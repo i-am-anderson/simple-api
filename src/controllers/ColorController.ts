@@ -65,14 +65,14 @@ export class ColorController {
   // | Busca COR pelo ID |
   // +-------------------+
   public static async getOne(req: Request, res: Response): Promise<void> {
+    const { id } = req.params;
+
+    if (!id || typeof id !== "string") {
+      res.status(400).json({ error: "ID é obrigatório." });
+      return;
+    }
+
     try {
-      const { id } = req.params;
-
-      if (!id || typeof id !== "string") {
-        res.status(400).json({ error: "ID é obrigatório." });
-        return;
-      }
-
       const color = await ColorModel.getColorById(id);
 
       if (!color) {
@@ -90,17 +90,17 @@ export class ColorController {
   // | Atualiza COR pelo ID |
   // +----------------------+
   public static async update(req: Request, res: Response): Promise<void> {
+    const { id } = req.params;
+    const { name, hexColor } = req.body;
+
+    if (!id || typeof id !== "string" || !name || !hexColor) {
+      res.status(400).json({
+        error: "ID, nome e código hexadecimal da COR são obrigatórios.",
+      });
+      return;
+    }
+
     try {
-      const { id } = req.params;
-      const { name, hexColor } = req.body;
-
-      if (!id || typeof id !== "string" || !name || !hexColor) {
-        res.status(400).json({
-          error: "ID, nome e código hexadecimal da COR são obrigatórios.",
-        });
-        return;
-      }
-
       const color = await ColorModel.updateColorById({ id, name, hexColor });
 
       if (!color) {
@@ -120,14 +120,14 @@ export class ColorController {
   // | Deleta COR pelo ID |
   // +--------------------+
   public static async delete(req: Request, res: Response): Promise<void> {
+    const { id } = req.params;
+
+    if (!id || typeof id !== "string") {
+      res.status(400).json({ error: "ID é obrigatório." });
+      return;
+    }
+
     try {
-      const { id } = req.params;
-
-      if (!id || typeof id !== "string") {
-        res.status(400).json({ error: "ID é obrigatório." });
-        return;
-      }
-
       const isColorDeleted = await ColorModel.deleteColorById(id);
 
       if (!isColorDeleted) {
