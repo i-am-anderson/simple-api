@@ -22,7 +22,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"name\": \"{{colorName}}\",\n  \"hexColor\": \"{{hexColor}}\"\n}",
+							"raw": "{\n  \"name\": \"{{name}}\",\n  \"hexColor\": \"{{hexColor}}\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -30,13 +30,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{url}}/colors/{{idColor}}",
+							"raw": "{{url}}/colors/1",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
 								"colors",
-								"{{idColor}}"
+								"1"
 							]
 						}
 					},
@@ -55,7 +55,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"name\": \"{{colorName}}\",\n  \"hexColor\": \"{{hexColor}}\"\n}\n",
+							"raw": "{\n  \"name\": \"{{name}}\",\n  \"hexColor\": \"{{hexColor}}\"\n}\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -80,7 +80,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{url}}/colors?perPage={{perPage}}&page={{page}}",
+							"raw": "{{url}}/colors?perPage=5&page=1",
 							"host": [
 								"{{url}}"
 							],
@@ -90,11 +90,11 @@
 							"query": [
 								{
 									"key": "perPage",
-									"value": "{{perPage}}"
+									"value": "5"
 								},
 								{
 									"key": "page",
-									"value": "{{page}}"
+									"value": "1"
 								}
 							]
 						}
@@ -107,13 +107,13 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{url}}/colors/{{idColor}}",
+							"raw": "{{url}}/colors/1",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
 								"colors",
-								"{{idColor}}"
+								"1"
 							]
 						}
 					},
@@ -125,13 +125,13 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{url}}/colors/{{idColor}}",
+							"raw": "{{url}}/colors/1",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
 								"colors",
-								"{{idColor}}"
+								"1"
 							]
 						}
 					},
@@ -155,7 +155,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"name\": \"{{accountName}}\",\n  \"description\": \"{{accountDescription}}\"\n}",
+							"raw": "{\n  \"name\": \"{{name}}\",\n  \"description\": \"{{description}}\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -163,13 +163,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{url}}/contas/{{idAccount}}",
+							"raw": "{{url}}/contas/1",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
 								"contas",
-								"{{idAccount}}"
+								"1"
 							]
 						}
 					},
@@ -188,7 +188,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"name\": \"{{accountName}}\",\n  \"description\": \"{{accountDescription}}\"\n}\n",
+							"raw": "{\n  \"name\": \"{{name}}\",\n  \"description\": \"{{description}}\"\n}\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -213,7 +213,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{url}}/accounts?perPage={{perPage}}&page={{page}}",
+							"raw": "{{url}}/accounts?perPage=5&page=1",
 							"host": [
 								"{{url}}"
 							],
@@ -223,11 +223,11 @@
 							"query": [
 								{
 									"key": "perPage",
-									"value": "{{perPage}}"
+									"value": "5"
 								},
 								{
 									"key": "page",
-									"value": "{{page}}"
+									"value": "1"
 								}
 							]
 						}
@@ -240,13 +240,13 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{url}}/accounts/{{idAccount}}",
+							"raw": "{{url}}/accounts/1",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
 								"accounts",
-								"{{idAccount}}"
+								"1"
 							]
 						}
 					},
@@ -258,13 +258,13 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{url}}/accounts/{{idAccount}}",
+							"raw": "{{url}}/accounts/1",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
 								"accounts",
-								"{{idAccount}}"
+								"1"
 							]
 						}
 					},
@@ -288,7 +288,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"name\": \"{{timeframeName}}\",\n  \"description\": \"{{timeframeDescription}}\"\n}",
+							"raw": "{\n  \"name\": \"{{name}}\",\n  \"description\": \"{{description}}\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -296,13 +296,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{url}}/timeframes/{{idTimeframe}}",
+							"raw": "{{url}}/timeframes/1",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
 								"timeframes",
-								"{{idTimeframe}}"
+								"1"
 							]
 						}
 					},
@@ -321,7 +321,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"name\": \"{{timeframeName}}\",\n  \"description\": \"{{timeframeDescription}}\"\n}\n",
+							"raw": "{\n  \"name\": \"{{name}}\",\n  \"description\": \"{{description}}\"\n}\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -346,7 +346,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{url}}/timeframes?perPage={{perPage}}&page={{page}}",
+							"raw": "{{url}}/timeframes?perPage=5&page=1",
 							"host": [
 								"{{url}}"
 							],
@@ -356,11 +356,11 @@
 							"query": [
 								{
 									"key": "perPage",
-									"value": "{{perPage}}"
+									"value": "5"
 								},
 								{
 									"key": "page",
-									"value": "{{page}}"
+									"value": "1"
 								}
 							]
 						}
@@ -373,13 +373,13 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{url}}/timeframes/{{id}}",
+							"raw": "{{url}}/timeframes/1",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
 								"timeframes",
-								"{{id}}"
+								"1"
 							]
 						}
 					},
@@ -391,13 +391,13 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{url}}/timeframes/{{id}}",
+							"raw": "{{url}}/timeframes/1",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
 								"timeframes",
-								"{{id}}"
+								"1"
 							]
 						}
 					},
@@ -421,7 +421,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"name\": \"{{marketName}}\",\n  \"description\": \"{{marketDescription}}\"\n}",
+							"raw": "{\n  \"name\": \"{{name}}\",\n  \"description\": \"{{description}}\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -429,13 +429,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{url}}/markets/{{idMarket}}",
+							"raw": "{{url}}/markets/1",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
 								"markets",
-								"{{idMarket}}"
+								"1"
 							]
 						}
 					},
@@ -454,7 +454,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"name\": \"{{marketName}}\",\n  \"description\": \"{{marketDescription}}\"\n}\n",
+							"raw": "{\n  \"name\": \"{{name}}\",\n  \"description\": \"{{description}}\"\n}\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -479,7 +479,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{url}}/markets?perPage={{perPage}}&page={{page}}",
+							"raw": "{{url}}/markets?perPage=5&page=1",
 							"host": [
 								"{{url}}"
 							],
@@ -489,11 +489,11 @@
 							"query": [
 								{
 									"key": "perPage",
-									"value": "{{perPage}}"
+									"value": "5"
 								},
 								{
 									"key": "page",
-									"value": "{{page}}"
+									"value": "1"
 								}
 							]
 						}
@@ -506,13 +506,13 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{url}}/markets/{{idMarket}}",
+							"raw": "{{url}}/markets/1",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
 								"markets",
-								"{{idMarket}}"
+								"1"
 							]
 						}
 					},
@@ -524,13 +524,13 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{url}}/markets/{{idMarket}}",
+							"raw": "{{url}}/markets/1",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
 								"markets",
-								"{{idMarket}}"
+								"1"
 							]
 						}
 					},
@@ -554,7 +554,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"name\": \"{{symbolName}}\",\n  \"ticker\": {{ticker}},\n  \"idMarket\": {{idMarket}},\n  \"description\": {{marketDescription}}\n}",
+							"raw": "{\n  \"name\": \"{{name}}\",\n  \"ticker\": \"{{ticker}}\",\n  \"idMarket\": {{idMarket}},\n  \"description\": \"{{description}}\"\n}\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -562,13 +562,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{url}}/symbols/{{idSymbol}}",
+							"raw": "{{url}}/symbols/1",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
 								"symbols",
-								"{{idSymbol}}"
+								"1"
 							]
 						}
 					},
@@ -587,7 +587,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"name\": \"{{symbolName}}\",\n  \"ticker\": {{ticker}},\n  \"idMarket\": {{idMarket}},\n  \"description\": {{marketDescription}}\n}\n",
+							"raw": "{\n  \"name\": \"{{name}}\",\n  \"ticker\": \"{{ticker}}\",\n  \"idMarket\": {{idMarket}},\n  \"description\": \"{{description}}\"\n}\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -612,7 +612,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{url}}/symbols?perPage={{perPage}}&page={{page}}",
+							"raw": "{{url}}/symbols?perPage=5&page=1",
 							"host": [
 								"{{url}}"
 							],
@@ -622,11 +622,11 @@
 							"query": [
 								{
 									"key": "perPage",
-									"value": "{{perPage}}"
+									"value": "5"
 								},
 								{
 									"key": "page",
-									"value": "{{page}}"
+									"value": "1"
 								}
 							]
 						}
@@ -639,13 +639,13 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{url}}/symbols/{{idSymbol}}",
+							"raw": "{{url}}/symbols/1",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
 								"symbols",
-								"{{idSymbol}}"
+								"1"
 							]
 						}
 					},
@@ -657,13 +657,13 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{url}}/symbols/{{idSymbol}}",
+							"raw": "{{url}}/symbols/1",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
 								"symbols",
-								"{{idSymbol}}"
+								"1"
 							]
 						}
 					},
@@ -697,94 +697,7 @@
 	"variable": [
 		{
 			"key": "url",
-			"value": "http://localhost:3600/api/v1"
-		},
-		{
-			"key": "perPage",
-			"value": "5"
-		},
-		{
-			"key": "page",
-			"value": "1"
-		},
-		{
-			"key": "colorName",
-			"value": "Vermelho Tomate",
-			"type": "string"
-		},
-		{
-			"key": "hexColor",
-			"value": "#ef3519",
-			"type": "string"
-		},
-		{
-			"key": "accountName",
-			"value": "Padrão",
-			"type": "string"
-		},
-		{
-			"key": "accountDescription",
-			"value": "Uma conta padrão.",
-			"type": "string"
-		},
-		{
-			"key": "timeframeName",
-			"value": "15m",
-			"type": "string"
-		},
-		{
-			"key": "timeframeDescription",
-			"value": "TIMEFRAME de 15 minutos.",
-			"type": "string"
-		},
-		{
-			"key": "marketName",
-			"value": "Futuros",
-			"type": "string"
-		},
-		{
-			"key": "marketDescription",
-			"value": "MERCADO de Futuros.",
-			"type": "string"
-		},
-		{
-			"key": "symbolName",
-			"value": "Ferbasa S.A.",
-			"type": "string"
-		},
-		{
-			"key": "ticker",
-			"value": "FESA4",
-			"type": "string"
-		},
-		{
-			"key": "idMarket",
-			"value": "1",
-			"type": "string"
-		},
-		{
-			"key": "symbolDescription",
-			"value": "Ação preferencial da Ferbasa, uma das maiores empresas de ferro do Brasil. Bolsa: B3. Setor: Materiais Básicos. Segmento: Mineração. País: Brasil. Moeda: BRL. Tipo: Ação. Data de listagem: 30/10/2002. Código ISIN: BRFESAACNPR5. Código CNPJ: 33.000.167/0001-01.",
-			"type": "string"
-		},
-		{
-			"key": "idColor",
-			"value": "1",
-			"type": "string"
-		},
-		{
-			"key": "idAccount\n",
-			"value": "1",
-			"type": "string"
-		},
-		{
-			"key": "idTimeframe",
-			"value": "1",
-			"type": "string"
-		},
-		{
-			"key": "idSymbol",
-			"value": "1",
+			"value": "http://localhost:3600/api/v1",
 			"type": "string"
 		}
 	]

@@ -73,13 +73,13 @@ export class TimeframeController {
   public static async getOne(req: Request, res: Response): Promise<void> {
     const { id } = req.params;
 
-    if (!id || typeof id !== "string") {
+    if (!id || Number.isNaN(Number(id))) {
       res.status(400).json({ error: "ID é obrigatório." });
       return;
     }
 
     try {
-      const timeframe = await TimeframeModel.getTimeframeById(id);
+      const timeframe = await TimeframeModel.getTimeframeById(Number(id));
 
       if (!timeframe) {
         res.status(404).json({ error: "TIMEFRAME não encontrada." });
@@ -101,7 +101,7 @@ export class TimeframeController {
     const { id } = req.params;
     const { name, description = "" } = req.body;
 
-    if (!id || typeof id !== "string" || !name) {
+    if (!id || Number.isNaN(Number(id)) || !name) {
       res.status(400).json({
         error: "ID e nome do TIMEFRAME são obrigatórios.",
       });
@@ -110,7 +110,7 @@ export class TimeframeController {
 
     try {
       const timeframe = await TimeframeModel.updateTimeframeById({
-        id,
+        id: Number(id),
         name,
         description,
       });
@@ -134,13 +134,13 @@ export class TimeframeController {
   public static async delete(req: Request, res: Response): Promise<void> {
     const { id } = req.params;
 
-    if (!id || typeof id !== "string") {
+    if (!id || Number.isNaN(Number(id))) {
       res.status(400).json({ error: "ID é obrigatório." });
       return;
     }
 
     try {
-      const isTimeframeDeleted = await TimeframeModel.deleteTimeframeById(id);
+      const isTimeframeDeleted = await TimeframeModel.deleteTimeframeById(Number(id));
 
       if (!isTimeframeDeleted) {
         res.status(404).json({ error: "TIMEFRAME não encontrado." });

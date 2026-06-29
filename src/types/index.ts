@@ -35,7 +35,7 @@ export type ConsoleColorsProps = {
 // | COLOR |
 // +-------+
 export type ColorProps = {
-  id?: string | number;
+  id?: number;
   name: string;
   hexColor: string;
   createdAt?: string;
@@ -56,7 +56,7 @@ export type AllColorsProps = {
 // | ACCOUNT |
 // +---------+
 export type AccountProps = {
-  id?: string | number;
+  id?: number;
   name: string;
   description?: string;
   createdAt?: string;
@@ -77,7 +77,7 @@ export type AllAccountsProps = {
 // | TIMEFRAME |
 // +------------+
 export type TimeframeProps = {
-  id?: string | number;
+  id?: number;
   name: string;
   description?: string;
   createdAt?: string;
@@ -98,7 +98,7 @@ export type AllTimeframesProps = {
 // | MARKET |
 // +--------+
 export type MarketProps = {
-  id?: string | number;
+  id?: number;
   name: string;
   description?: string;
   createdAt?: string;
@@ -119,10 +119,10 @@ export type AllMarketsProps = {
 // | SYMBOL |
 // +--------+
 export type SymbolProps = {
-  id?: string | number;
+  id?: number;
   name: string;
   ticker: string;
-  idMarket: string | number;
+  idMarket: number;
   description?: string;
   createdAt?: string;
   updatedAt?: string;

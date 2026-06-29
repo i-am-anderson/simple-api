@@ -67,13 +67,13 @@ export class MarketController {
   public static async getOne(req: Request, res: Response): Promise<void> {
     const { id } = req.params;
 
-    if (!id || typeof id !== "string") {
+    if (!id || Number.isNaN(Number(id))) {
       res.status(400).json({ error: "ID é obrigatório." });
       return;
     }
 
     try {
-      const market = await MarketModel.getMarketById(id);
+      const market = await MarketModel.getMarketById(Number(id));
 
       if (!market) {
         res.status(404).json({ error: "MERCADO não encontrado." });
@@ -95,7 +95,7 @@ export class MarketController {
     const { id } = req.params;
     const { name, description = "" } = req.body;
 
-    if (!id || typeof id !== "string" || !name) {
+    if (!id || Number.isNaN(Number(id)) || !name) {
       res.status(400).json({
         error: "ID e nome do MERCADO são obrigatórios.",
       });
@@ -104,7 +104,7 @@ export class MarketController {
 
     try {
       const market = await MarketModel.updateMarketById({
-        id,
+        id: Number(id),
         name,
         description,
       });
@@ -128,13 +128,13 @@ export class MarketController {
   public static async delete(req: Request, res: Response): Promise<void> {
     const { id } = req.params;
 
-    if (!id || typeof id !== "string") {
+    if (!id || Number.isNaN(Number(id))) {
       res.status(400).json({ error: "ID é obrigatório." });
       return;
     }
 
     try {
-      const isMarketDeleted = await MarketModel.deleteMarketById(id);
+      const isMarketDeleted = await MarketModel.deleteMarketById(Number(id));
 
       if (!isMarketDeleted) {
         res.status(404).json({ error: "MERCADO não encontrado." });

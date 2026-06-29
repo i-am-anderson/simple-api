@@ -69,13 +69,13 @@ export class AccountController {
   public static async getOne(req: Request, res: Response): Promise<void> {
     const { id } = req.params;
 
-    if (!id || typeof id !== "string") {
+    if (!id || Number.isNaN(Number(id))) {
       res.status(400).json({ error: "ID é obrigatório." });
       return;
     }
 
     try {
-      const account = await AccountModel.getAccountById(id);
+      const account = await AccountModel.getAccountById(Number(id));
 
       if (!account) {
         res.status(404).json({ error: "CONTA não encontrada." });
@@ -97,7 +97,7 @@ export class AccountController {
     const { id } = req.params;
     const { name, description = "" } = req.body;
 
-    if (!id || typeof id !== "string" || !name) {
+    if (!id || Number.isNaN(Number(id)) || !name) {
       res.status(400).json({
         error: "ID e nome da CONTA são obrigatórios.",
       });
@@ -105,7 +105,7 @@ export class AccountController {
     }
 
     try {
-      const account = await AccountModel.updateAccountById({ id, name, description });
+      const account = await AccountModel.updateAccountById({ id: Number(id), name, description });
 
       if (!account) {
         res.status(404).json({ error: "CONTA não encontrada." });
@@ -126,13 +126,13 @@ export class AccountController {
   public static async delete(req: Request, res: Response): Promise<void> {
     const { id } = req.params;
 
-    if (!id || typeof id !== "string") {
+    if (!id || Number.isNaN(Number(id))) {
       res.status(400).json({ error: "ID é obrigatório." });
       return;
     }
 
     try {
-      const isAccountDeleted = await AccountModel.deleteAccountById(id);
+      const isAccountDeleted = await AccountModel.deleteAccountById(Number(id));
 
       if (!isAccountDeleted) {
         res.status(404).json({ error: "CONTA não encontrada." });

@@ -1,22 +1,22 @@
 [
   {
     "name": "Ações",
-    "hexColor": "MERCADO de ações à vista."
+    "description": "MERCADO de ações à vista."
   },
   {
     "name": "Futuros",
-    "hexColor": "MERCADO de Futuros."
+    "description": "MERCADO de Futuros."
   },
   {
     "name": "Opções",
-    "hexColor": "MERCADO de Opções."
+    "description": "MERCADO de Opções."
   },
   {
     "name": "Forex",
-    "hexColor": "MERCADO de Forex."
+    "description": "MERCADO de Forex."
   },
   {
     "name": "Criptomoedas",
-    "hexColor": "MERCADO de Criptomoedas."
+    "description": "MERCADO de Criptomoedas."
   }
 ]

@@ -8,7 +8,7 @@ export class SymbolController {
   public static async create(req: Request, res: Response): Promise<void> {
     const { name, ticker, idMarket, description = "" } = req.body;
 
-    if (!name || !ticker || !idMarket || typeof idMarket !== "string") {
+    if (!name || !ticker || !idMarket || typeof Number(idMarket) !== "number") {
       res.status(400).json({
         error: "Nome, ticker e mercado do SÍMBOLO são obrigatórios.",
       });
@@ -81,13 +81,13 @@ export class SymbolController {
   public static async getOne(req: Request, res: Response): Promise<void> {
     const { id } = req.params;
 
-    if (!id || typeof id !== "string") {
+    if (!id || Number.isNaN(Number(id))) {
       res.status(400).json({ error: "ID é obrigatório." });
       return;
     }
 
     try {
-      const symbol = await SymbolModel.getSymbolById(id);
+      const symbol = await SymbolModel.getSymbolById(Number(id));
 
       if (!symbol) {
         res.status(404).json({ error: "SÍMBOLO não encontrado." });
@@ -111,11 +111,11 @@ export class SymbolController {
 
     if (
       !id ||
-      typeof id !== "string" ||
+      Number.isNaN(Number(id)) ||
       !name ||
       !ticker ||
       !idMarket ||
-      typeof idMarket !== "string"
+      Number.isNaN(Number(idMarket))
     ) {
       res.status(400).json({
         error: "ID, nome, ticker e mercado do SÍMBOLO são obrigatórios.",
@@ -132,7 +132,7 @@ export class SymbolController {
       }
 
       const symbol = await SymbolModel.updateSymbolById({
-        id,
+        id: Number(id),
         name,
         ticker,
         idMarket,
@@ -158,13 +158,13 @@ export class SymbolController {
   public static async delete(req: Request, res: Response): Promise<void> {
     const { id } = req.params;
 
-    if (!id || typeof id !== "string") {
+    if (!id || Number.isNaN(Number(id))) {
       res.status(400).json({ error: "ID é obrigatório." });
       return;
     }
 
     try {
-      const isSymbolDeleted = await SymbolModel.deleteSymbolById(id);
+      const isSymbolDeleted = await SymbolModel.deleteSymbolById(Number(id));
 
       if (!isSymbolDeleted) {
         res.status(404).json({ error: "SÍMBOLO não encontrado." });

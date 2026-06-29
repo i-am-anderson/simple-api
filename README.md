@@ -384,7 +384,7 @@ export class ColorController {
     try {
       const { id } = req.params;
 
-      if (!id || typeof id !== "string") {
+      if (!id || Number.isNaN(Number(id))) {
         res.status(400).json({ error: "ID é obrigatório." });
         return;
       }
@@ -410,7 +410,7 @@ export class ColorController {
       const { id } = req.params;
       const { name, hexColor } = req.body;
 
-      if (!id || typeof id !== "string" || !name || !hexColor) {
+      if (!id || Number.isNaN(Number(id)) || !name || !hexColor) {
         res.status(400).json({
           error: "ID, nome e código hexadecimal da COR são obrigatórios.",
         });
@@ -439,7 +439,7 @@ export class ColorController {
     try {
       const { id } = req.params;
 
-      if (!id || typeof id !== "string") {
+      if (!id || Number.isNaN(Number(id))) {
         res.status(400).json({ error: "ID é obrigatório." });
         return;
       }
