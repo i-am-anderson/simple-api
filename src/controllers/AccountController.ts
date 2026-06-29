@@ -33,9 +33,9 @@ export class AccountController {
   // | Busca todas as CONTAS |
   // +-----------------------+
   public static async getAll(req: Request, res: Response): Promise<void> {
-    let { per_page, page } = req.query;
+    let { perPage, page } = req.query;
 
-    let limit = Number(per_page);
+    let limit = Number(perPage);
     if (!limit || Number.isNaN(limit) || limit < 1 || limit > 20) {
       limit = 20;
     }
@@ -45,10 +45,10 @@ export class AccountController {
       currentPage = 1;
     }
 
-    const rows_to_skip = (currentPage - 1) * limit;
+    const rowsToSkip = (currentPage - 1) * limit;
 
     try {
-      const accounts = await AccountModel.getAllAccounts(limit, rows_to_skip);
+      const accounts = await AccountModel.getAllAccounts(limit, rowsToSkip);
 
       if (!accounts) {
         res.status(404).json({ error: "CONTAS não encontradas." });
@@ -67,14 +67,14 @@ export class AccountController {
   // | Busca CONTA pelo ID |
   // +---------------------+
   public static async getOne(req: Request, res: Response): Promise<void> {
+    const { id } = req.params;
+
+    if (!id || typeof id !== "string") {
+      res.status(400).json({ error: "ID é obrigatório." });
+      return;
+    }
+
     try {
-      const { id } = req.params;
-
-      if (!id || typeof id !== "string") {
-        res.status(400).json({ error: "ID é obrigatório." });
-        return;
-      }
-
       const account = await AccountModel.getAccountById(id);
 
       if (!account) {
@@ -94,17 +94,17 @@ export class AccountController {
   // | Atualiza CONTA pelo ID |
   // +------------------------+
   public static async update(req: Request, res: Response): Promise<void> {
+    const { id } = req.params;
+    const { name, description = "" } = req.body;
+
+    if (!id || typeof id !== "string" || !name) {
+      res.status(400).json({
+        error: "ID e nome da CONTA são obrigatórios.",
+      });
+      return;
+    }
+
     try {
-      const { id } = req.params;
-      const { name, description = "" } = req.body;
-
-      if (!id || typeof id !== "string" || !name) {
-        res.status(400).json({
-          error: "ID e nome da CONTA são obrigatórios.",
-        });
-        return;
-      }
-
       const account = await AccountModel.updateAccountById({ id, name, description });
 
       if (!account) {
@@ -124,14 +124,14 @@ export class AccountController {
   // | Deleta CONTA pelo ID |
   // +---------------------+
   public static async delete(req: Request, res: Response): Promise<void> {
+    const { id } = req.params;
+
+    if (!id || typeof id !== "string") {
+      res.status(400).json({ error: "ID é obrigatório." });
+      return;
+    }
+
     try {
-      const { id } = req.params;
-
-      if (!id || typeof id !== "string") {
-        res.status(400).json({ error: "ID é obrigatório." });
-        return;
-      }
-
       const isAccountDeleted = await AccountModel.deleteAccountById(id);
 
       if (!isAccountDeleted) {

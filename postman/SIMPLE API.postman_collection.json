@@ -30,13 +30,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{url}}/colors/{{id}}",
+							"raw": "{{url}}/colors/{{idColor}}",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
 								"colors",
-								"{{id}}"
+								"{{idColor}}"
 							]
 						}
 					},
@@ -80,7 +80,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{url}}/colors?per_page={{per_page}}&page={{page}}",
+							"raw": "{{url}}/colors?perPage={{perPage}}&page={{page}}",
 							"host": [
 								"{{url}}"
 							],
@@ -89,8 +89,8 @@
 							],
 							"query": [
 								{
-									"key": "per_page",
-									"value": "{{per_page}}"
+									"key": "perPage",
+									"value": "{{perPage}}"
 								},
 								{
 									"key": "page",
@@ -107,13 +107,13 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{url}}/colors/{{id}}",
+							"raw": "{{url}}/colors/{{idColor}}",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
 								"colors",
-								"{{id}}"
+								"{{idColor}}"
 							]
 						}
 					},
@@ -125,13 +125,13 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{url}}/colors/{{id}}",
+							"raw": "{{url}}/colors/{{idColor}}",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
 								"colors",
-								"{{id}}"
+								"{{idColor}}"
 							]
 						}
 					},
@@ -163,13 +163,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{url}}/contas/{{id}}",
+							"raw": "{{url}}/contas/{{idAccount}}",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
 								"contas",
-								"{{id}}"
+								"{{idAccount}}"
 							]
 						}
 					},
@@ -213,7 +213,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{url}}/accounts?per_page={{per_page}}&page={{page}}",
+							"raw": "{{url}}/accounts?perPage={{perPage}}&page={{page}}",
 							"host": [
 								"{{url}}"
 							],
@@ -222,8 +222,8 @@
 							],
 							"query": [
 								{
-									"key": "per_page",
-									"value": "{{per_page}}"
+									"key": "perPage",
+									"value": "{{perPage}}"
 								},
 								{
 									"key": "page",
@@ -240,13 +240,13 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{url}}/accounts/{{id}}",
+							"raw": "{{url}}/accounts/{{idAccount}}",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
 								"accounts",
-								"{{id}}"
+								"{{idAccount}}"
 							]
 						}
 					},
@@ -258,13 +258,13 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{url}}/accounts/{{id}}",
+							"raw": "{{url}}/accounts/{{idAccount}}",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
 								"accounts",
-								"{{id}}"
+								"{{idAccount}}"
 							]
 						}
 					},
@@ -296,20 +296,20 @@
 							}
 						},
 						"url": {
-							"raw": "{{url}}/timeframes/{{id}}",
+							"raw": "{{url}}/timeframes/{{idTimeframe}}",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
 								"timeframes",
-								"{{id}}"
+								"{{idTimeframe}}"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "Cria uma nova TIMEFRAME",
+					"name": "Cria um novo TIMEFRAME",
 					"request": {
 						"method": "POST",
 						"header": [
@@ -341,12 +341,12 @@
 					"response": []
 				},
 				{
-					"name": "Busca todas as TIMEFRAMES (1 <= per_page <= 20)",
+					"name": "Busca todos os TIMEFRAMES (1 <= per_page <= 20)",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{url}}/timeframes?per_page={{per_page}}&page={{page}}",
+							"raw": "{{url}}/timeframes?perPage={{perPage}}&page={{page}}",
 							"host": [
 								"{{url}}"
 							],
@@ -355,8 +355,8 @@
 							],
 							"query": [
 								{
-									"key": "per_page",
-									"value": "{{per_page}}"
+									"key": "perPage",
+									"value": "{{perPage}}"
 								},
 								{
 									"key": "page",
@@ -429,20 +429,20 @@
 							}
 						},
 						"url": {
-							"raw": "{{url}}/markets/{{id}}",
+							"raw": "{{url}}/markets/{{idMarket}}",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
 								"markets",
-								"{{id}}"
+								"{{idMarket}}"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "Cria uma nova MERCADO",
+					"name": "Cria um novo MERCADO",
 					"request": {
 						"method": "POST",
 						"header": [
@@ -474,12 +474,12 @@
 					"response": []
 				},
 				{
-					"name": "Busca todas as MERCADOS (1 <= per_page <= 20)",
+					"name": "Busca todos os MERCADOS (1 <= per_page <= 20)",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{url}}/markets?per_page={{per_page}}&page={{page}}",
+							"raw": "{{url}}/markets?perPage={{perPage}}&page={{page}}",
 							"host": [
 								"{{url}}"
 							],
@@ -488,8 +488,8 @@
 							],
 							"query": [
 								{
-									"key": "per_page",
-									"value": "{{per_page}}"
+									"key": "perPage",
+									"value": "{{perPage}}"
 								},
 								{
 									"key": "page",
@@ -506,13 +506,13 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{url}}/markets/{{id}}",
+							"raw": "{{url}}/markets/{{idMarket}}",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
 								"markets",
-								"{{id}}"
+								"{{idMarket}}"
 							]
 						}
 					},
@@ -524,13 +524,146 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{url}}/markets/{{id}}",
+							"raw": "{{url}}/markets/{{idMarket}}",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
 								"markets",
-								"{{id}}"
+								"{{idMarket}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "SÍMBOLOS",
+			"item": [
+				{
+					"name": "Atualiza SÍMBOLO pelo ID",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "content-type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"{{symbolName}}\",\n  \"ticker\": {{ticker}},\n  \"idMarket\": {{idMarket}},\n  \"description\": {{marketDescription}}\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/symbols/{{idSymbol}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"symbols",
+								"{{idSymbol}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cria um novo SÍMBOLO",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "content-type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"{{symbolName}}\",\n  \"ticker\": {{ticker}},\n  \"idMarket\": {{idMarket}},\n  \"description\": {{marketDescription}}\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/symbols",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"symbols"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Busca todos os SÍMBOLOS (1 <= per_page <= 20)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/symbols?perPage={{perPage}}&page={{page}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"symbols"
+							],
+							"query": [
+								{
+									"key": "perPage",
+									"value": "{{perPage}}"
+								},
+								{
+									"key": "page",
+									"value": "{{page}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Busca SÍMBOLO pelo ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/symbols/{{idSymbol}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"symbols",
+								"{{idSymbol}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deleta SÍMBOLO pelo ID",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/symbols/{{idSymbol}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"symbols",
+								"{{idSymbol}}"
 							]
 						}
 					},
@@ -567,11 +700,7 @@
 			"value": "http://localhost:3600/api/v1"
 		},
 		{
-			"key": "id",
-			"value": "1"
-		},
-		{
-			"key": "per_page",
+			"key": "perPage",
 			"value": "5"
 		},
 		{
@@ -616,6 +745,46 @@
 		{
 			"key": "marketDescription",
 			"value": "MERCADO de Futuros.",
+			"type": "string"
+		},
+		{
+			"key": "symbolName",
+			"value": "Ferbasa S.A.",
+			"type": "string"
+		},
+		{
+			"key": "ticker",
+			"value": "FESA4",
+			"type": "string"
+		},
+		{
+			"key": "idMarket",
+			"value": "1",
+			"type": "string"
+		},
+		{
+			"key": "symbolDescription",
+			"value": "Ação preferencial da Ferbasa, uma das maiores empresas de ferro do Brasil. Bolsa: B3. Setor: Materiais Básicos. Segmento: Mineração. País: Brasil. Moeda: BRL. Tipo: Ação. Data de listagem: 30/10/2002. Código ISIN: BRFESAACNPR5. Código CNPJ: 33.000.167/0001-01.",
+			"type": "string"
+		},
+		{
+			"key": "idColor",
+			"value": "1",
+			"type": "string"
+		},
+		{
+			"key": "idAccount\n",
+			"value": "1",
+			"type": "string"
+		},
+		{
+			"key": "idTimeframe",
+			"value": "1",
+			"type": "string"
+		},
+		{
+			"key": "idSymbol",
+			"value": "1",
 			"type": "string"
 		}
 	]

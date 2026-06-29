@@ -203,13 +203,13 @@ export class ColorModel {
   // | Busca todas as CORES |
   // +----------------------+
   public async getAllColors(
-    per_page: number,
-    rows_to_skip: number,
+    perPage: number,
+    rowsToSkip: number,
   ): Promise<AllColorsProps> {
     const getColors = new Promise<ColorProps[]>((resolve, reject) => {
       this.db.all(
         "SELECT * FROM colors LIMIT ? OFFSET ?;",
-        [per_page, rows_to_skip],
+        [perPage, rowsToSkip],
         function (err, rows) {
           if (err) reject(err);
           else resolve(rows as ColorProps[]);
@@ -233,10 +233,10 @@ export class ColorModel {
       return {
         data: colors,
         meta: {
-          current_page: Math.floor(rows_to_skip / per_page) + 1,
-          per_page: per_page,
-          total_items: totalCount,
-          total_pages: Math.ceil(totalCount / per_page),
+          currentPage: Math.floor(rowsToSkip / perPage) + 1,
+          perPage: perPage,
+          totalItems: totalCount,
+          totalPages: Math.ceil(totalCount / perPage),
         },
       };
     } catch (error) {
@@ -347,9 +347,9 @@ export class ColorController {
   // | Busca todas as CORES |
   // +----------------------+
   public static async getAll(req: Request, res: Response): Promise<void> {
-    let { per_page, page } = req.query;
+    let { perPage, page } = req.query;
 
-    let limit = Number(per_page);
+    let limit = Number(perPage);
     if (!limit || Number.isNaN(limit) || limit < 1 || limit > 20) {
       limit = 20;
     }
@@ -359,10 +359,10 @@ export class ColorController {
       currentPage = 1;
     }
 
-    const rows_to_skip = (currentPage - 1) * limit;
+    const rowsToSkip = (currentPage - 1) * limit;
 
     try {
-      const colors = await ColorModel.getAllColors(limit, rows_to_skip);
+      const colors = await ColorModel.getAllColors(limit, rowsToSkip);
 
       if (!colors) {
         res.status(404).json({ error: "CORES não encontradas." });
@@ -594,10 +594,10 @@ export type ColorProps = {
 export type AllColorsProps = {
   data: ColorProps[];
   meta: {
-    current_page: number;
-    per_page: number;
-    total_items: number;
-    total_pages: number;
+    currentPage: number;
+    perPage: number;
+    totalItems: number;
+    totalPages: number;
   };
 };
 ```

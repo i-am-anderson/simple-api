@@ -45,10 +45,10 @@ export type ColorProps = {
 export type AllColorsProps = {
   data: ColorProps[];
   meta: {
-    current_page: number;
-    per_page: number;
-    total_items: number;
-    total_pages: number;
+    currentPage: number;
+    perPage: number;
+    totalItems: number;
+    totalPages: number;
   };
 };
 
@@ -66,10 +66,10 @@ export type AccountProps = {
 export type AllAccountsProps = {
   data: AccountProps[];
   meta: {
-    current_page: number;
-    per_page: number;
-    total_items: number;
-    total_pages: number;
+    currentPage: number;
+    perPage: number;
+    totalItems: number;
+    totalPages: number;
   };
 };
 
@@ -87,10 +87,10 @@ export type TimeframeProps = {
 export type AllTimeframesProps = {
   data: TimeframeProps[];
   meta: {
-    current_page: number;
-    per_page: number;
-    total_items: number;
-    total_pages: number;
+    currentPage: number;
+    perPage: number;
+    totalItems: number;
+    totalPages: number;
   };
 };
 
@@ -108,9 +108,32 @@ export type MarketProps = {
 export type AllMarketsProps = {
   data: MarketProps[];
   meta: {
-    current_page: number;
-    per_page: number;
-    total_items: number;
-    total_pages: number;
+    currentPage: number;
+    perPage: number;
+    totalItems: number;
+    totalPages: number;
+  };
+};
+
+// +--------+
+// | SYMBOL |
+// +--------+
+export type SymbolProps = {
+  id?: string | number;
+  name: string;
+  ticker: string;
+  idMarket: string | number;
+  description?: string;
+  createdAt?: string;
+  updatedAt?: string;
+};
+
+export type AllSymbolsProps = {
+  data: MarketProps[];
+  meta: {
+    currentPage: number;
+    perPage: number;
+    totalItems: number;
+    totalPages: number;
   };
 };

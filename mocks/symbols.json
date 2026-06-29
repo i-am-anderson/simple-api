@@ -1,0 +1,62 @@
+[
+  {
+    "name": "Petrobras PN",
+    "ticker": "PETR4",
+    "idMarket": 1,
+    "description": "Ação preferencial da Petrobras, uma das maiores empresas de petróleo do Brasil. Bolsa: B3. Setor: Energia. Segmento: Petróleo, Gás e Biocombustíveis. País: Brasil. Moeda: BRL. Tipo: Ação. Data de listagem: 31/10/2002. Código ISIN: BRPETRACNPR6. Código CNPJ: 33.000.167/0001-01."
+  },
+  {
+    "name": "Vale ON",
+    "ticker": "VALE3",
+    "idMarket": 1,
+    "description": "Ação ordinária da Vale S.A., uma das maiores mineradoras do mundo. Bolsa: B3. Setor: Mineração. Segmento: Mineração de Ferro e Metais. País: Brasil. Moeda: BRL. Tipo: Ação. Data de listagem: 10/05/2000. Código ISIN: BRVALEACNPA3. Código CNPJ: 33.592.510/0001-54."
+  },
+  {
+    "name": "Ambev ON",
+    "ticker": "ABEV3",
+    "idMarket": 1,
+    "description": "Ação ordinária da Ambev S.A., uma das maiores empresas de bebidas do Brasil. Bolsa: B3. Setor: Bebidas. Segmento: Cervejas e Refrigerantes. País: Brasil. Moeda: BRL. Tipo: Ação. Data de listagem: 19/06/2000. Código ISIN: BRABEVACNPA5. Código CNPJ: 07.526.557/0001-00."
+  },
+  {
+    "name": "Itaú Unibanco PN",
+    "ticker": "ITUB4",
+    "idMarket": 1,
+    "description": "Ação preferencial do Itaú Unibanco Holding S.A., um dos maiores bancos do Brasil. Bolsa: B3. Setor: Financeiro. Segmento: Bancos. País: Brasil. Moeda: BRL. Tipo: Ação. Data de listagem: 10/05/2000. Código ISIN: BRITUBACNPR3. Código CNPJ: 60.872.504/0001-23."
+  },
+  {
+    "name": "Banco do Brasil ON",
+    "ticker": "BBAS3",
+    "idMarket": 1,
+    "description": "Ação ordinária do Banco do Brasil S.A., um dos maiores bancos do país. Bolsa: B3. Setor: Financeiro. Segmento: Bancos. País: Brasil. Moeda: BRL. Tipo: Ação. Data de listagem: 10/05/2000. Código ISIN: BRBBASACNPA2. Código CNPJ: 00.000.000/0001-91."
+  },
+  {
+    "name": "Magazine Luiza ON",
+    "ticker": "MGLU3",
+    "idMarket": 1,
+    "description": "Ação ordinária da Magazine Luiza S.A., uma das maiores varejistas do Brasil. Bolsa: B3. Setor: Varejo. Segmento: Comércio Eletrônico e Lojas de Departamento. País: Brasil. Moeda: BRL. Tipo: Ação. Data de listagem: 10/05/2000. Código ISIN: BRMGLUACNPA9. Código CNPJ: 47.960.950/0001-21."
+  },
+  {
+    "name": "B3 ON",
+    "ticker": "B3SA3",
+    "idMarket": 1,
+    "description": "Ação ordinária da B3 S.A. - Brasil, Bolsa, Balcão, a bolsa de valores oficial do Brasil. Bolsa: B3. Setor: Financeiro. Segmento: Bolsas de Valores e Mercados de Capitais. País: Brasil. Moeda: BRL. Tipo: Ação. Data de listagem: 10/05/2000. Código ISIN: BRB3SAACNPA6. Código CNPJ: 13.105.011/0001-91."
+  },
+  {
+    "name": "Natura ON",
+    "ticker": "NTCO3",
+    "idMarket": 1,
+    "description": "Ação ordinária da Natura &Co Holding S.A., uma das maiores empresas de cosméticos do Brasil. Bolsa: B3. Setor: Cosméticos e Perfumaria. Segmento: Cosméticos, Perfumaria e Higiene Pessoal. País: Brasil. Moeda: BRL. Tipo: Ação. Data de listagem: 10/05/2000. Código ISIN: BRNTCOACNPA5. Código CNPJ: 61.052.169/0001-00."
+  },
+  {
+    "name": "JBS ON",
+    "ticker": "JBSS3",
+    "idMarket": 1,
+    "description": "Ação ordinária da JBS S.A., uma das maiores empresas de alimentos do mundo. Bolsa: B3. Setor: Alimentos e Bebidas. Segmento: Carnes e Produtos Alimentícios. País: Brasil. Moeda: BRL. Tipo: Ação. Data de listagem: 10/05/2000. Código ISIN: BRJBSSACNPA2. Código CNPJ: 02.916.265/0001-60."
+  },
+  {
+    "name": "Bradesco PN",
+    "ticker": "BBDC4",
+    "idMarket": 1,
+    "description": "Ação preferencial do Bradesco S.A., um dos maiores bancos do Brasil. Bolsa: B3. Setor: Financeiro. Segmento: Bancos. País: Brasil. Moeda: BRL. Tipo: Ação. Data de listagem: 10/05/2000. Código ISIN: BRBBDCACNPR2. Código CNPJ: 60.872.504/0001-23."
+  }
+]

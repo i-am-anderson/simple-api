@@ -1,24 +1,26 @@
 import type { Database } from "sqlite3";
-import { AllTimeframesProps, TimeframeProps } from "../types";
+import { AllSymbolsProps, SymbolProps } from "../types";
 
-export class TimeframeModel {
+export class SymbolModel {
   private db: Database;
 
   constructor(db: Database) {
     this.db = db;
   }
 
-  // +------------------------+
-  // | Cria um novo TIMEFRAME |
-  // +------------------------+
-  public createTimeframe({
+  // +----------------------+
+  // | Cria um novo SÍMBOLO |
+  // +----------------------+
+  public createSymbol({
     name,
+    ticker,
+    idMarket,
     description,
-  }: TimeframeProps): Promise<number> {
+  }: SymbolProps): Promise<number> {
     return new Promise((resolve, reject) => {
       this.db.run(
-        "INSERT INTO timeframes (name, description) VALUES (?, ?)",
-        [name, description],
+        "INSERT INTO symbols (name, ticker, idMarket, description) VALUES (?, ?, ?, ?)",
+        [name, ticker, idMarket, description],
         function (err) {
           if (err) {
             reject(err);
@@ -30,27 +32,27 @@ export class TimeframeModel {
     });
   }
 
-  // +---------------------------+
-  // | Busca todos os TIMEFRAMES |
-  // +---------------------------+
-  public async getAllTimeframes(
+  // +-------------------------+
+  // | Busca todos os SÍMBOLOS |
+  // +-------------------------+
+  public async getAllSymbols(
     perPage: number,
     rowsToSkip: number,
-  ): Promise<AllTimeframesProps> {
-    const getTimeframes = new Promise<TimeframeProps[]>((resolve, reject) => {
+  ): Promise<AllSymbolsProps> {
+    const getSymbols = new Promise<SymbolProps[]>((resolve, reject) => {
       this.db.all(
-        "SELECT * FROM timeframes LIMIT ? OFFSET ?;",
+        "SELECT * FROM symbols LIMIT ? OFFSET ?;",
         [perPage, rowsToSkip],
         function (err, rows) {
           if (err) reject(err);
-          else resolve(rows as TimeframeProps[]);
+          else resolve(rows as SymbolProps[]);
         },
       );
     });
 
     const getTotal = new Promise<number>((resolve, reject) => {
       this.db.get(
-        "SELECT COUNT(*) AS total FROM timeframes;",
+        "SELECT COUNT(*) AS total FROM symbols;",
         function (err, row: { total: number }) {
           if (err) reject(err);
           else resolve(row.total);
@@ -59,13 +61,10 @@ export class TimeframeModel {
     });
 
     try {
-      const [timeframes, totalCount] = await Promise.all([
-        getTimeframes,
-        getTotal,
-      ]);
+      const [symbols, totalCount] = await Promise.all([getSymbols, getTotal]);
 
       return {
-        data: timeframes,
+        data: symbols,
         meta: {
           currentPage: Math.floor(rowsToSkip / perPage) + 1,
           perPage: perPage,
@@ -78,37 +77,39 @@ export class TimeframeModel {
     }
   }
 
-  // +-------------------------+
-  // | Busca TIMEFRAME pelo ID |
-  // +-------------------------+
-  public getTimeframeById(id: number | string): Promise<TimeframeProps | null> {
+  // +-----------------------+
+  // | Busca SÍMBOLO pelo ID |
+  // +-----------------------+
+  public getSymbolById(id: number | string): Promise<SymbolProps | null> {
     return new Promise((resolve, reject) => {
       this.db.get(
-        "SELECT * FROM timeframes WHERE id = ?",
+        "SELECT * FROM symbols WHERE id = ?",
         [id],
         function (err, row) {
           if (err) {
             reject(err);
           } else {
-            resolve((row as TimeframeProps) || null);
+            resolve((row as SymbolProps) || null);
           }
         },
       );
     });
   }
 
-  // +----------------------------+
-  // | Atualiza TIMEFRAME pelo ID |
-  // +----------------------------+
-  public updateTimeframeById({
+  // +--------------------------+
+  // | Atualiza SÍMBOLO pelo ID |
+  // +--------------------------+
+  public updateSymbolById({
     id,
     name,
+    ticker,
+    idMarket,
     description,
-  }: TimeframeProps): Promise<boolean> {
+  }: SymbolProps): Promise<boolean> {
     return new Promise((resolve, reject) => {
       this.db.run(
-        "UPDATE timeframes SET name = ?, description = ?, updatedAt = CURRENT_TIMESTAMP WHERE id = ?",
-        [name, description, id],
+        "UPDATE symbols SET name = ?, ticker = ?, idMarket = ?, description = ?,  updatedAt = CURRENT_TIMESTAMP WHERE id = ?",
+        [name, ticker, idMarket, description, id],
         function (err) {
           if (err) {
             reject(err);
@@ -120,12 +121,12 @@ export class TimeframeModel {
     });
   }
 
-  // +--------------------------+
-  // | Deleta TIMEFRAME pelo ID |
-  // +--------------------------+
-  public deleteTimeframeById(id: number | string): Promise<boolean> {
+  // +------------------------+
+  // | Deleta SÍMBOLO pelo ID |
+  // +------------------------+
+  public deleteSymbolById(id: number | string): Promise<boolean> {
     return new Promise((resolve, reject) => {
-      this.db.run("DELETE FROM timeframes WHERE id = ?", [id], function (err) {
+      this.db.run("DELETE FROM symbols WHERE id = ?", [id], function (err) {
         if (err) {
           reject(err);
         } else {

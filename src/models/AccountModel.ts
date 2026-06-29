@@ -31,13 +31,13 @@ export class AccountModel {
   // | Busca todas as ACCOUNTS |
   // +-------------------------+
   public async getAllAccounts(
-    per_page: number,
-    rows_to_skip: number,
+    perPage: number,
+    rowsToSkip: number,
   ): Promise<AllAccountsProps> {
     const getAccounts = new Promise<AccountProps[]>((resolve, reject) => {
       this.db.all(
         "SELECT * FROM accounts LIMIT ? OFFSET ?;",
-        [per_page, rows_to_skip],
+        [perPage, rowsToSkip],
         function (err, rows) {
           if (err) reject(err);
           else resolve(rows as AccountProps[]);
@@ -61,10 +61,10 @@ export class AccountModel {
       return {
         data: accounts,
         meta: {
-          current_page: Math.floor(rows_to_skip / per_page) + 1,
-          per_page: per_page,
-          total_items: totalCount,
-          total_pages: Math.ceil(totalCount / per_page),
+          currentPage: Math.floor(rowsToSkip / perPage) + 1,
+          perPage: perPage,
+          totalItems: totalCount,
+          totalPages: Math.ceil(totalCount / perPage),
         },
       };
     } catch (error) {

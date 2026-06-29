@@ -31,9 +31,9 @@ export class ColorController {
   // | Busca todas as CORES |
   // +----------------------+
   public static async getAll(req: Request, res: Response): Promise<void> {
-    let { per_page, page } = req.query;
+    let { perPage, page } = req.query;
 
-    let limit = Number(per_page);
+    let limit = Number(perPage);
     if (!limit || Number.isNaN(limit) || limit < 1 || limit > 20) {
       limit = 20;
     }
@@ -43,10 +43,10 @@ export class ColorController {
       currentPage = 1;
     }
 
-    const rows_to_skip = (currentPage - 1) * limit;
+    const rowsToSkip = (currentPage - 1) * limit;
 
     try {
-      const colors = await ColorModel.getAllColors(limit, rows_to_skip);
+      const colors = await ColorModel.getAllColors(limit, rowsToSkip);
 
       if (!colors) {
         res.status(404).json({ error: "CORES não encontradas." });
@@ -65,14 +65,14 @@ export class ColorController {
   // | Busca COR pelo ID |
   // +-------------------+
   public static async getOne(req: Request, res: Response): Promise<void> {
+    const { id } = req.params;
+
+    if (!id || typeof id !== "string") {
+      res.status(400).json({ error: "ID é obrigatório." });
+      return;
+    }
+
     try {
-      const { id } = req.params;
-
-      if (!id || typeof id !== "string") {
-        res.status(400).json({ error: "ID é obrigatório." });
-        return;
-      }
-
       const color = await ColorModel.getColorById(id);
 
       if (!color) {
@@ -90,17 +90,17 @@ export class ColorController {
   // | Atualiza COR pelo ID |
   // +----------------------+
   public static async update(req: Request, res: Response): Promise<void> {
+    const { id } = req.params;
+    const { name, hexColor } = req.body;
+
+    if (!id || typeof id !== "string" || !name || !hexColor) {
+      res.status(400).json({
+        error: "ID, nome e código hexadecimal da COR são obrigatórios.",
+      });
+      return;
+    }
+
     try {
-      const { id } = req.params;
-      const { name, hexColor } = req.body;
-
-      if (!id || typeof id !== "string" || !name || !hexColor) {
-        res.status(400).json({
-          error: "ID, nome e código hexadecimal da COR são obrigatórios.",
-        });
-        return;
-      }
-
       const color = await ColorModel.updateColorById({ id, name, hexColor });
 
       if (!color) {
@@ -120,14 +120,14 @@ export class ColorController {
   // | Deleta COR pelo ID |
   // +--------------------+
   public static async delete(req: Request, res: Response): Promise<void> {
+    const { id } = req.params;
+
+    if (!id || typeof id !== "string") {
+      res.status(400).json({ error: "ID é obrigatório." });
+      return;
+    }
+
     try {
-      const { id } = req.params;
-
-      if (!id || typeof id !== "string") {
-        res.status(400).json({ error: "ID é obrigatório." });
-        return;
-      }
-
       const isColorDeleted = await ColorModel.deleteColorById(id);
 
       if (!isColorDeleted) {
