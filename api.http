@@ -33,3 +33,38 @@ content-type: application/json
 
 ### Deleta COR pelo ID
 DELETE  http://localhost:3600/api/v1/colors/2
+
+
+##############################
+######      CONTAS      ######
+##############################
+
+### Cria uma nova CONTA
+POST http://localhost:3600/api/v1/accounts
+content-type: application/json
+
+{
+  "name": "Default",
+  "description": "Conta padrão."
+}
+
+
+### Busca todas as CONTAS (1 <= per_page <= 20)
+GET http://localhost:3600/api/v1/accounts?per_page=5&page=1
+
+
+### Busca CONTA pelo ID 
+GET http://localhost:3600/api/v1/accounts/1
+
+
+### Atualiza CONTA pelo ID 
+PATCH http://localhost:3600/api/v1/accounts/1
+content-type: application/json
+
+{
+  "name": "Padrão",
+  "description": "Conta padrão em PT-BR."
+}
+
+### Deleta CONTA pelo ID
+DELETE  http://localhost:3600/api/v1/accounts/1

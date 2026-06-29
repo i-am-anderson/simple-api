@@ -1,6 +1,6 @@
 import express from "express";
 import cors from "cors";
-import { userRoutes } from "./routes";
+import { ColorRoute, AccountRoute } from "./routes";
 import { consoleColors } from "./utils/consoleColors";
 
 const app = express();
@@ -19,7 +19,8 @@ app.use(
 app.use(express.json());
 
 // Rotas
-app.use("/api/v1", userRoutes);
+app.use("/api/v1", ColorRoute);
+app.use("/api/v1", AccountRoute);
 
 // Iniciar servidor
 app.listen(PORT, () => {

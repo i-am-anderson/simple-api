@@ -51,3 +51,24 @@ export type AllColorsProps = {
     total_pages: number;
   };
 };
+
+// +---------+
+// | ACCOUNT |
+// +---------+
+export type AccountProps = {
+  id?: string | number;
+  name: string; 
+  description?: string;
+  createdAt?: string;
+  updatedAt?: string;
+};
+
+export type AllAccountsProps = {
+  data: AccountProps[];
+  meta: {
+    current_page: number;
+    per_page: number;
+    total_items: number;
+    total_pages: number;
+  };
+};

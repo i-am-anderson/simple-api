@@ -28,6 +28,64 @@ const db = new sqlite3.Database(dbPath, (err) => {
         );
       `);
 
+    // ACCOUNTS
+    db.run(`
+        CREATE TABLE IF NOT EXISTS accounts (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            name TEXT NOT NULL UNIQUE,
+            description TEXT
+            createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
+            updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP
+        );
+      `);
+
+    // STATUS
+    db.run(`
+        CREATE TABLE IF NOT EXISTS status (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            name TEXT NOT NULL UNIQUE,
+            description TEXT
+            createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
+            updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP
+        );
+      `);
+
+    // TIMEFRAMES
+    db.run(`
+        CREATE TABLE IF NOT EXISTS timeframes (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            name TEXT NOT NULL UNIQUE,
+            description TEXT
+            createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
+            updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP
+        );
+      `);
+
+    // MARKETS
+    db.run(`
+        CREATE TABLE IF NOT EXISTS markets (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            name TEXT NOT NULL UNIQUE,
+            description TEXT
+            createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
+            updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP
+        );
+      `);
+
+    // SYMBOLS
+    db.run(`
+        CREATE TABLE IF NOT EXISTS symbols (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            name TEXT NOT NULL,
+            ticker TEXT NOT NULL UNIQUE,
+            idMarket INTEGER NOT NULL,
+            description TEXT,
+            createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
+            updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP,
+            FOREIGN KEY (idMarket) REFERENCES markets(id) ON DELETE RESTRICT
+        );
+      `);
+
     // +-------------------------------------------+
     // | CRIAÇÃO DAS TRIGGERS, SE NÃO EXISTIREM... |
     // +-------------------------------------------+
