@@ -67,7 +67,7 @@ export class ColorController {
   public static async getOne(req: Request, res: Response): Promise<void> {
     const { id } = req.params;
 
-    if (!id || typeof id !== "string") {
+    if (!id || Number.isNaN(+id)) {
       res.status(400).json({ error: "ID é obrigatório." });
       return;
     }
@@ -93,7 +93,7 @@ export class ColorController {
     const { id } = req.params;
     const { name, hexColor } = req.body;
 
-    if (!id || typeof id !== "string" || !name || !hexColor) {
+    if (!id || Number.isNaN(+id) || !name || !hexColor) {
       res.status(400).json({
         error: "ID, nome e código hexadecimal da COR são obrigatórios.",
       });
@@ -122,7 +122,7 @@ export class ColorController {
   public static async delete(req: Request, res: Response): Promise<void> {
     const { id } = req.params;
 
-    if (!id || typeof id !== "string") {
+    if (!id || Number.isNaN(+id)) {
       res.status(400).json({ error: "ID é obrigatório." });
       return;
     }
