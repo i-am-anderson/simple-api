@@ -68,3 +68,38 @@ content-type: application/json
 
 ### Deleta CONTA pelo ID
 DELETE  http://localhost:3600/api/v1/accounts/1
+
+
+##################################
+######      TIMEFRAMES      ######
+##################################
+
+### Cria uma nova TIMEFRAME
+POST http://localhost:3600/api/v1/timeframes
+content-type: application/json
+
+{
+  "name": "1h",
+  "description": "TIMEFRAME de 1 hora."
+}
+
+
+### Busca todas as TIMEFRAMES (1 <= per_page <= 20)
+GET http://localhost:3600/api/v1/timeframes?per_page=5&page=1
+
+
+### Busca TIMEFRAME pelo ID 
+GET http://localhost:3600/api/v1/timeframes/1
+
+
+### Atualiza TIMEFRAME pelo ID 
+PATCH http://localhost:3600/api/v1/timeframes/1
+content-type: application/json
+
+{
+  "name": "1H",
+  "description": "TIMEFRAME de 1 hora."
+}
+
+### Deleta TIMEFRAME pelo ID
+DELETE  http://localhost:3600/api/v1/timeframes/1

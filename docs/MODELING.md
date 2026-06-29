@@ -2,7 +2,6 @@
 ```
 colors      (id, name, hexColor)
 accounts    (id, name, description?)
-status      (id, name, description?)
 timeframes  (id, name, description?)
 markets     (id, name, description?)
 symbols     (id, name, ticker, idMarket, description?)
@@ -39,7 +38,7 @@ goals_trades      (id, idGoal, idTrade)
 
 # A Tabela Central
 ```
-trades      (id, idAccount, entryDate, idSymbol, side, idTimeframe, exitDate, entryPrice, exitPrice, size, stopLoss, takeProfit, pnl, pnlPct, idStrategy, idSetup, idStatus, note)
+trades      (id, idAccount, entryDate, idSymbol, side, idTimeframe, exitDate, entryPrice, exitPrice, size, stopLoss, takeProfit, pnl, pnlPct, idStrategy, idSetup, status, note)
 ```
 
 ## TRIGGERS

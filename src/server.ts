@@ -1,6 +1,6 @@
 import express from "express";
 import cors from "cors";
-import { ColorRoute, AccountRoute } from "./routes";
+import { ColorRoute, AccountRoute, TimeframeRoute } from "./routes";
 import { consoleColors } from "./utils/consoleColors";
 
 const app = express();
@@ -21,8 +21,11 @@ app.use(express.json());
 // Rotas
 app.use("/api/v1", ColorRoute);
 app.use("/api/v1", AccountRoute);
+app.use("/api/v1", TimeframeRoute);
 
 // Iniciar servidor
 app.listen(PORT, () => {
-  console.log(`Servidor iniciado em ${BOLD_CYAN}${UNDERLINE}http://localhost:${PORT}${RESET}`);
+  console.log(
+    `Servidor iniciado em ${BOLD_CYAN}${UNDERLINE}http://localhost:${PORT}${RESET}`,
+  );
 });

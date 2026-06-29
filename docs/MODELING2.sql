@@ -21,14 +21,6 @@ CREATE TABLE accounts (
     updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE TABLE status (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    name TEXT NOT NULL UNIQUE,
-    description TEXT
-    createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
-    updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP
-);
-
 CREATE TABLE timeframes (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     name TEXT NOT NULL UNIQUE,
@@ -152,7 +144,7 @@ CREATE TABLE trades (
     pnlPct REAL DEFAULT 0.0,
     idStrategy INTEGER,
     idSetup INTEGER,
-    idStatus INTEGER,
+    status TEXT CHECK (status IN ('WIN', 'LOSS', 'BREAKEVEN')),
     note TEXT,
     createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
     updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP,
@@ -161,7 +153,6 @@ CREATE TABLE trades (
     FOREIGN KEY (idTimeframe) REFERENCES timeframes(id) ON DELETE RESTRICT,
     FOREIGN KEY (idStrategy) REFERENCES strategies(id) ON DELETE SET NULL,
     FOREIGN KEY (idSetup) REFERENCES setups(id) ON DELETE SET NULL,
-    FOREIGN KEY (idStatus) REFERENCES status(id) ON DELETE SET NULL
 );
 
 -- ============================================================================

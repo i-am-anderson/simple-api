@@ -39,17 +39,6 @@ const db = new sqlite3.Database(dbPath, (err) => {
         );
       `);
 
-    // STATUS
-    db.run(`
-        CREATE TABLE IF NOT EXISTS status (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            name TEXT NOT NULL UNIQUE,
-            description TEXT
-            createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
-            updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP
-        );
-      `);
-
     // TIMEFRAMES
     db.run(`
         CREATE TABLE IF NOT EXISTS timeframes (

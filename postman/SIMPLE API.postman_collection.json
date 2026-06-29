@@ -7,132 +7,403 @@
 	},
 	"item": [
 		{
-			"name": "Atualiza COR pelo ID",
-			"request": {
-				"method": "PATCH",
-				"header": [
-					{
-						"key": "content-type",
-						"value": "application/json",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n  \"name\": \"{{name}}\",\n  \"hexColor\": \"{{hexColor}}\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{url}}/colors/{{id}}",
-					"host": [
-						"{{url}}"
-					],
-					"path": [
-						"colors",
-						"{{id}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Cria uma nova COR",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "content-type",
-						"value": "application/json",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n  \"name\": \"{{name}}\",\n  \"hexColor\": \"{{hexColor}}\"\n}\n",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{url}}/colors",
-					"host": [
-						"{{url}}"
-					],
-					"path": [
-						"colors"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Busca todas as CORES (1 <= per_page <= 20)",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{url}}/colors?per_page={{per_page}}&page={{page}}",
-					"host": [
-						"{{url}}"
-					],
-					"path": [
-						"colors"
-					],
-					"query": [
-						{
-							"key": "per_page",
-							"value": "{{per_page}}"
+			"name": "COR",
+			"item": [
+				{
+					"name": "Atualiza COR pelo ID",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "content-type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"{{colorName}}\",\n  \"hexColor\": \"{{hexColor}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
 						},
-						{
-							"key": "page",
-							"value": "{{page}}"
+						"url": {
+							"raw": "{{url}}/colors/{{id}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"colors",
+								"{{id}}"
+							]
 						}
-					]
+					},
+					"response": []
+				},
+				{
+					"name": "Cria uma nova COR",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "content-type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"{{colorName}}\",\n  \"hexColor\": \"{{hexColor}}\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/colors",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"colors"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Busca todas as CORES (1 <= per_page <= 20)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/colors?per_page={{per_page}}&page={{page}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"colors"
+							],
+							"query": [
+								{
+									"key": "per_page",
+									"value": "{{per_page}}"
+								},
+								{
+									"key": "page",
+									"value": "{{page}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Busca COR pelo ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/colors/{{id}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"colors",
+								"{{id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deleta COR pelo ID",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/colors/{{id}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"colors",
+								"{{id}}"
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			]
 		},
 		{
-			"name": "Busca COR pelo ID",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{url}}/colors/{{id}}",
-					"host": [
-						"{{url}}"
-					],
-					"path": [
-						"colors",
-						"{{id}}"
-					]
+			"name": "CONTA",
+			"item": [
+				{
+					"name": "Atualiza CONTA pelo ID",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "content-type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"{{accountName}}\",\n  \"description\": \"{{accountDescription}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/contas/{{id}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"contas",
+								"{{id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cria uma nova CONTA",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "content-type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"{{accountName}}\",\n  \"description\": \"{{accountDescription}}\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/accounts",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"accounts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Busca todas as CONTAS (1 <= per_page <= 20)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/accounts?per_page={{per_page}}&page={{page}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"accounts"
+							],
+							"query": [
+								{
+									"key": "per_page",
+									"value": "{{per_page}}"
+								},
+								{
+									"key": "page",
+									"value": "{{page}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Busca CONTA pelo ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/accounts/{{id}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"accounts",
+								"{{id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deleta CONTA pelo ID",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/accounts/{{id}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"accounts",
+								"{{id}}"
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			]
 		},
 		{
-			"name": "Deleta COR pelo ID",
-			"request": {
-				"method": "DELETE",
-				"header": [],
-				"url": {
-					"raw": "{{url}}/colors/{{id}}",
-					"host": [
-						"{{url}}"
-					],
-					"path": [
-						"colors",
-						"{{id}}"
-					]
+			"name": "TIMEFRAME",
+			"item": [
+				{
+					"name": "Atualiza TIMEFRAME pelo ID",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "content-type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"{{timeframeName}}\",\n  \"description\": \"{{timeframeDescription}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/timeframes/{{id}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"timeframes",
+								"{{id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cria uma nova TIMEFRAME",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "content-type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"{{timeframeName}}\",\n  \"description\": \"{{timeframeDescription}}\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/timeframes",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"timeframes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Busca todas as TIMEFRAMES (1 <= per_page <= 20)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/timeframes?per_page={{per_page}}&page={{page}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"timeframes"
+							],
+							"query": [
+								{
+									"key": "per_page",
+									"value": "{{per_page}}"
+								},
+								{
+									"key": "page",
+									"value": "{{page}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Busca TIMEFRAME pelo ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/timeframes/{{id}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"timeframes",
+								"{{id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deleta TIMEFRAME pelo ID",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/timeframes/{{id}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"timeframes",
+								"{{id}}"
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			]
 		}
 	],
 	"event": [
@@ -175,13 +446,33 @@
 			"value": "1"
 		},
 		{
-			"key": "name",
+			"key": "colorName",
 			"value": "Vermelho Tomate",
 			"type": "string"
 		},
 		{
 			"key": "hexColor",
 			"value": "#ef3519",
+			"type": "string"
+		},
+		{
+			"key": "accountName",
+			"value": "Padrão",
+			"type": "string"
+		},
+		{
+			"key": "accountDescription",
+			"value": "Uma conta padrão.",
+			"type": "string"
+		},
+		{
+			"key": "timeframeName",
+			"value": "15m",
+			"type": "string"
+		},
+		{
+			"key": "timeframeDescription",
+			"value": "TIMEFRAME de 15 minutos.",
 			"type": "string"
 		}
 	]
