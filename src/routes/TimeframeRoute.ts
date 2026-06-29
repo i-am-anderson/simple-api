@@ -2,13 +2,13 @@ import { Router } from "express";
 import { TimeframeController } from "../controllers";
 
 const router = Router();
-// +-------------------------+
-// | Cria uma nova TIMEFRAME |
-// +-------------------------+
+// +------------------------+
+// | Cria um novo TIMEFRAME |
+// +------------------------+
 router.post("/timeframes", TimeframeController.create);
 
 // +---------------------------+
-// | Busca todas as TIMEFRAMES |
+// | Busca todos os TIMEFRAMES |
 // +---------------------------+
 router.get("/timeframes", TimeframeController.getAll);
 

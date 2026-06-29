@@ -1,6 +1,6 @@
 import express from "express";
 import cors from "cors";
-import { ColorRoute, AccountRoute, TimeframeRoute } from "./routes";
+import { ColorRoute, AccountRoute, TimeframeRoute, MarketRoute } from "./routes";
 import { consoleColors } from "./utils/consoleColors";
 
 const app = express();
@@ -22,6 +22,7 @@ app.use(express.json());
 app.use("/api/v1", ColorRoute);
 app.use("/api/v1", AccountRoute);
 app.use("/api/v1", TimeframeRoute);
+app.use("/api/v1", MarketRoute);
 
 // Iniciar servidor
 app.listen(PORT, () => {

@@ -93,3 +93,24 @@ export type AllTimeframesProps = {
     total_pages: number;
   };
 };
+
+// +--------+
+// | MARKET |
+// +--------+
+export type MarketProps = {
+  id?: string | number;
+  name: string;
+  description?: string;
+  createdAt?: string;
+  updatedAt?: string;
+};
+
+export type AllMarketsProps = {
+  data: MarketProps[];
+  meta: {
+    current_page: number;
+    per_page: number;
+    total_items: number;
+    total_pages: number;
+  };
+};

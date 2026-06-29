@@ -2,9 +2,9 @@ import type { Request, Response } from "express";
 import { TimeframeModel } from "../models";
 
 export class TimeframeController {
-  // +-------------------------+
-  // | Cria uma nova TIMEFRAME |
-  // +-------------------------+
+  // +------------------------+
+  // | Cria um novo TIMEFRAME |
+  // +------------------------+
   public static async create(req: Request, res: Response): Promise<void> {
     const { name, description = "" } = req.body;
 
@@ -25,13 +25,13 @@ export class TimeframeController {
     } catch (error) {
       res.status(500).json({
         error:
-          "Não foi possível criar a TIMEFRAME. Verifique se ela já está cadastrada.",
+          "Não foi possível criar o TIMEFRAME. Verifique se ele já está cadastrado.",
       });
     }
   }
 
   // +---------------------------+
-  // | Busca todas as TIMEFRAMES |
+  // | Busca todos os TIMEFRAMES |
   // +---------------------------+
   public static async getAll(req: Request, res: Response): Promise<void> {
     let { per_page, page } = req.query;

@@ -1,23 +1,20 @@
 import type { Database } from "sqlite3";
-import { AllTimeframesProps, TimeframeProps } from "../types";
+import { AllMarketsProps, MarketProps } from "../types";
 
-export class TimeframeModel {
+export class MarketModel {
   private db: Database;
 
   constructor(db: Database) {
     this.db = db;
   }
 
-  // +------------------------+
-  // | Cria um novo TIMEFRAME |
-  // +------------------------+
-  public createTimeframe({
-    name,
-    description,
-  }: TimeframeProps): Promise<number> {
+  // +----------------------+
+  // | Cria um novo MERCADO |
+  // +----------------------+
+  public createMarket({ name, description }: MarketProps): Promise<number> {
     return new Promise((resolve, reject) => {
       this.db.run(
-        "INSERT INTO timeframes (name, description) VALUES (?, ?)",
+        "INSERT INTO markets (name, description) VALUES (?, ?)",
         [name, description],
         function (err) {
           if (err) {
@@ -30,27 +27,27 @@ export class TimeframeModel {
     });
   }
 
-  // +---------------------------+
-  // | Busca todos os TIMEFRAMES |
-  // +---------------------------+
-  public async getAllTimeframes(
+  // +-------------------------+
+  // | Busca todos os MERCADOS |
+  // +-------------------------+
+  public async getAllMarkets(
     per_page: number,
     rows_to_skip: number,
-  ): Promise<AllTimeframesProps> {
-    const getTimeframes = new Promise<TimeframeProps[]>((resolve, reject) => {
+  ): Promise<AllMarketsProps> {
+    const getMarkets = new Promise<MarketProps[]>((resolve, reject) => {
       this.db.all(
-        "SELECT * FROM timeframes LIMIT ? OFFSET ?;",
+        "SELECT * FROM markets LIMIT ? OFFSET ?;",
         [per_page, rows_to_skip],
         function (err, rows) {
           if (err) reject(err);
-          else resolve(rows as TimeframeProps[]);
+          else resolve(rows as MarketProps[]);
         },
       );
     });
 
     const getTotal = new Promise<number>((resolve, reject) => {
       this.db.get(
-        "SELECT COUNT(*) AS total FROM timeframes;",
+        "SELECT COUNT(*) AS total FROM markets;",
         function (err, row: { total: number }) {
           if (err) reject(err);
           else resolve(row.total);
@@ -59,13 +56,10 @@ export class TimeframeModel {
     });
 
     try {
-      const [timeframes, totalCount] = await Promise.all([
-        getTimeframes,
-        getTotal,
-      ]);
+      const [markets, totalCount] = await Promise.all([getMarkets, getTotal]);
 
       return {
-        data: timeframes,
+        data: markets,
         meta: {
           current_page: Math.floor(rows_to_skip / per_page) + 1,
           per_page: per_page,
@@ -78,36 +72,36 @@ export class TimeframeModel {
     }
   }
 
-  // +-------------------------+
-  // | Busca TIMEFRAME pelo ID |
-  // +-------------------------+
-  public getTimeframeById(id: number | string): Promise<TimeframeProps | null> {
+  // +-----------------------+
+  // | Busca MERCADO pelo ID |
+  // +-----------------------+
+  public getMarketById(id: number | string): Promise<MarketProps | null> {
     return new Promise((resolve, reject) => {
       this.db.get(
-        "SELECT * FROM timeframes WHERE id = ?",
+        "SELECT * FROM markets WHERE id = ?",
         [id],
         function (err, row) {
           if (err) {
             reject(err);
           } else {
-            resolve((row as TimeframeProps) || null);
+            resolve((row as MarketProps) || null);
           }
         },
       );
     });
   }
 
-  // +----------------------------+
-  // | Atualiza TIMEFRAME pelo ID |
-  // +----------------------------+
-  public updateTimeframeById({
+  // +--------------------------+
+  // | Atualiza MERCADO pelo ID |
+  // +--------------------------+
+  public updateMarketById({
     id,
     name,
     description,
-  }: TimeframeProps): Promise<boolean> {
+  }: MarketProps): Promise<boolean> {
     return new Promise((resolve, reject) => {
       this.db.run(
-        "UPDATE timeframes SET name = ?, description = ?, updatedAt = CURRENT_TIMESTAMP WHERE id = ?",
+        "UPDATE markets SET name = ?, description = ?, updatedAt = CURRENT_TIMESTAMP WHERE id = ?",
         [name, description, id],
         function (err) {
           if (err) {
@@ -120,12 +114,12 @@ export class TimeframeModel {
     });
   }
 
-  // +--------------------------+
-  // | Deleta TIMEFRAME pelo ID |
-  // +--------------------------+
-  public deleteTimeframeById(id: number | string): Promise<boolean> {
+  // +------------------------+
+  // | Deleta MERCADO pelo ID |
+  // +------------------------+
+  public deleteMarketById(id: number | string): Promise<boolean> {
     return new Promise((resolve, reject) => {
-      this.db.run("DELETE FROM timeframes WHERE id = ?", [id], function (err) {
+      this.db.run("DELETE FROM markets WHERE id = ?", [id], function (err) {
         if (err) {
           reject(err);
         } else {
