@@ -1,0 +1,162 @@
+[
+  {
+    "name": "Preto",
+    "hexColor": "#000000"
+  },
+  {
+    "name": "Branco",
+    "hexColor": "#FFFFFF"
+  },
+  {
+    "name": "Vermelho",
+    "hexColor": "#FF0000"
+  },
+  {
+    "name": "Verde",
+    "hexColor": "#008000"
+  },
+  {
+    "name": "Azul",
+    "hexColor": "#0000FF"
+  },
+  {
+    "name": "Amarelo",
+    "hexColor": "#FFFF00"
+  },
+  {
+    "name": "Laranja",
+    "hexColor": "#FFA500"
+  },
+  {
+    "name": "Roxo",
+    "hexColor": "#800080"
+  },
+  {
+    "name": "Rosa",
+    "hexColor": "#FFC0CB"
+  },
+  {
+    "name": "Marrom",
+    "hexColor": "#8B4513"
+  },
+  {
+    "name": "Cinza",
+    "hexColor": "#808080"
+  },
+  {
+    "name": "Cinza Claro",
+    "hexColor": "#D3D3D3"
+  },
+  {
+    "name": "Cinza Escuro",
+    "hexColor": "#A9A9A9"
+  },
+  {
+    "name": "Ciano",
+    "hexColor": "#00FFFF"
+  },
+  {
+    "name": "Turquesa",
+    "hexColor": "#40E0D0"
+  },
+  {
+    "name": "Azul Claro",
+    "hexColor": "#ADD8E6"
+  },
+  {
+    "name": "Azul Marinho",
+    "hexColor": "#000080"
+  },
+  {
+    "name": "Azul Royal",
+    "hexColor": "#4169E1"
+  },
+  {
+    "name": "Verde Claro",
+    "hexColor": "#90EE90"
+  },
+  {
+    "name": "Verde Limão",
+    "hexColor": "#32CD32"
+  },
+  {
+    "name": "Verde Escuro",
+    "hexColor": "#006400"
+  },
+  {
+    "name": "Oliva",
+    "hexColor": "#808000"
+  },
+  {
+    "name": "Bege",
+    "hexColor": "#F5F5DC"
+  },
+  {
+    "name": "Creme",
+    "hexColor": "#FFFDD0"
+  },
+  {
+    "name": "Dourado",
+    "hexColor": "#FFD700"
+  },
+  {
+    "name": "Prata",
+    "hexColor": "#C0C0C0"
+  },
+  {
+    "name": "Coral",
+    "hexColor": "#FF7F50"
+  },
+  {
+    "name": "Salmão",
+    "hexColor": "#FA8072"
+  },
+  {
+    "name": "Vinho",
+    "hexColor": "#722F37"
+  },
+  {
+    "name": "Bordô",
+    "hexColor": "#800020"
+  },
+  {
+    "name": "Lilás",
+    "hexColor": "#C8A2C8"
+  },
+  {
+    "name": "Lavanda",
+    "hexColor": "#E6E6FA"
+  },
+  {
+    "name": "Índigo",
+    "hexColor": "#4B0082"
+  },
+  {
+    "name": "Magenta",
+    "hexColor": "#FF00FF"
+  },
+  {
+    "name": "Caramelo",
+    "hexColor": "#C68E17"
+  },
+  {
+    "name": "Chocolate",
+    "hexColor": "#7B3F00"
+  },
+  {
+    "name": "Caqui",
+    "hexColor": "#C3B091"
+  },
+  {
+    "name": "Areia",
+    "hexColor": "#C2B280"
+  },
+  {
+    "name": "Pêssego",
+    "hexColor": "#FFDAB9"
+  },
+  {
+    "name": "Ameixa",
+    "hexColor": "#8E4585"
+  }
+]
