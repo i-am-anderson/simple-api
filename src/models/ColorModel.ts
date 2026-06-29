@@ -31,13 +31,13 @@ export class ColorModel {
   // | Busca todas as CORES |
   // +----------------------+
   public async getAllColors(
-    per_page: number,
-    rows_to_skip: number,
+    perPage: number,
+    rowsToSkip: number,
   ): Promise<AllColorsProps> {
     const getColors = new Promise<ColorProps[]>((resolve, reject) => {
       this.db.all(
         "SELECT * FROM colors LIMIT ? OFFSET ?;",
-        [per_page, rows_to_skip],
+        [perPage, rowsToSkip],
         function (err, rows) {
           if (err) reject(err);
           else resolve(rows as ColorProps[]);
@@ -61,10 +61,10 @@ export class ColorModel {
       return {
         data: colors,
         meta: {
-          current_page: Math.floor(rows_to_skip / per_page) + 1,
-          per_page: per_page,
-          total_items: totalCount,
-          total_pages: Math.ceil(totalCount / per_page),
+          currentPage: Math.floor(rowsToSkip / perPage) + 1,
+          perPage: perPage,
+          totalItems: totalCount,
+          totalPages: Math.ceil(totalCount / perPage),
         },
       };
     } catch (error) {

@@ -31,9 +31,9 @@ export class ColorController {
   // | Busca todas as CORES |
   // +----------------------+
   public static async getAll(req: Request, res: Response): Promise<void> {
-    let { per_page, page } = req.query;
+    let { perPage, page } = req.query;
 
-    let limit = Number(per_page);
+    let limit = Number(perPage);
     if (!limit || Number.isNaN(limit) || limit < 1 || limit > 20) {
       limit = 20;
     }
@@ -43,10 +43,10 @@ export class ColorController {
       currentPage = 1;
     }
 
-    const rows_to_skip = (currentPage - 1) * limit;
+    const rowsToSkip = (currentPage - 1) * limit;
 
     try {
-      const colors = await ColorModel.getAllColors(limit, rows_to_skip);
+      const colors = await ColorModel.getAllColors(limit, rowsToSkip);
 
       if (!colors) {
         res.status(404).json({ error: "CORES não encontradas." });

@@ -45,9 +45,9 @@ export type ColorProps = {
 export type AllColorsProps = {
   data: ColorProps[];
   meta: {
-    current_page: number;
-    per_page: number;
-    total_items: number;
-    total_pages: number;
+    currentPage: number;
+    perPage: number;
+    totalItems: number;
+    totalPages: number;
   };
 };

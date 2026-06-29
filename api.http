@@ -14,8 +14,8 @@ content-type: application/json
 }
 
 
-### Busca todas as CORES (1 <= per_page <= 20)
-GET http://localhost:3600/api/v1/colors?per_page=5&page=1
+### Busca todas as CORES (1 <= perPage <= 20)
+GET http://localhost:3600/api/v1/colors?perPage=5&page=1
 
 
 ### Busca COR pelo ID 
