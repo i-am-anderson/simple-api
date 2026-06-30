@@ -1,5 +1,10 @@
 import type { Database } from "sqlite3";
-import { AllSymbolsProps, SymbolProps } from "../types";
+import {
+  AllSymbolsProps,
+  SymbolProps,
+  SymbolQueryResult,
+  SymbolWithMarketProps,
+} from "../types";
 
 export class SymbolModel {
   private db: Database;
@@ -39,13 +44,18 @@ export class SymbolModel {
     perPage: number,
     rowsToSkip: number,
   ): Promise<AllSymbolsProps> {
-    const getSymbols = new Promise<SymbolProps[]>((resolve, reject) => {
+    const getSymbols = new Promise<SymbolQueryResult[]>((resolve, reject) => {
       this.db.all(
-        "SELECT * FROM symbols LIMIT ? OFFSET ?;",
+        `SELECT 
+            s.id, s.name, s.ticker, s.description, s.createdAt, s.updatedAt,
+            m.id AS marketId, m.name AS marketName, m.description AS marketDescription 
+        FROM symbols AS s 
+        INNER JOIN markets AS m ON s.idMarket = m.id 
+        LIMIT ? OFFSET ?;`,
         [perPage, rowsToSkip],
         function (err, rows) {
           if (err) reject(err);
-          else resolve(rows as SymbolProps[]);
+          else resolve(rows as SymbolQueryResult[]);
         },
       );
     });
@@ -53,15 +63,29 @@ export class SymbolModel {
     const getTotal = new Promise<number>((resolve, reject) => {
       this.db.get(
         "SELECT COUNT(*) AS total FROM symbols;",
-        function (err, row: { total: number }) {
+        function (err, row: { total: number } | undefined) {
           if (err) reject(err);
-          else resolve(row.total);
+          else resolve(row ? row.total : 0);
         },
       );
     });
 
     try {
-      const [symbols, totalCount] = await Promise.all([getSymbols, getTotal]);
+      const [rows, totalCount] = await Promise.all([getSymbols, getTotal]);
+
+      const symbols: SymbolWithMarketProps[] = rows.map((row) => ({
+        id: row.id,
+        name: row.name,
+        ticker: row.ticker,
+        description: row.description,
+        market: {
+          id: row.marketId,
+          name: row.marketName,
+          description: row.marketDescription,
+        },
+        createdAt: row.createdAt,
+        updatedAt: row.updatedAt,
+      }));
 
       return {
         data: symbols,
@@ -69,7 +93,7 @@ export class SymbolModel {
           currentPage: Math.floor(rowsToSkip / perPage) + 1,
           perPage: perPage,
           totalItems: totalCount,
-          totalPages: Math.ceil(totalCount / perPage),
+          totalPages: Math.ceil(totalCount / perPage) || 1,
         },
       };
     } catch (error) {
@@ -80,20 +104,52 @@ export class SymbolModel {
   // +-----------------------+
   // | Busca SÍMBOLO pelo ID |
   // +-----------------------+
-  public getSymbolById(id: number | string): Promise<SymbolProps | null> {
-    return new Promise((resolve, reject) => {
-      this.db.get(
-        "SELECT * FROM symbols WHERE id = ?",
-        [id],
-        function (err, row) {
-          if (err) {
-            reject(err);
-          } else {
-            resolve((row as SymbolProps) || null);
-          }
+  public async getSymbolById(
+    id: number,
+  ): Promise<SymbolWithMarketProps | null> {
+    const getSymbol = new Promise<SymbolQueryResult | undefined>(
+      (resolve, reject) => {
+        this.db.get(
+          `SELECT 
+            s.id, s.name, s.ticker, s.description, s.createdAt, s.updatedAt,
+            m.id AS marketId, m.name AS marketName, m.description AS marketDescription 
+          FROM symbols AS s 
+          INNER JOIN markets AS m ON s.idMarket = m.id 
+          WHERE s.id = ?;`,
+          [id],
+          function (err, row) {
+            if (err) reject(err);
+            else resolve(row as SymbolQueryResult | undefined);
+          },
+        );
+      },
+    );
+
+    try {
+      const row = await getSymbol;
+
+      if (!row) {
+        return null;
+      }
+
+      const symbols: SymbolWithMarketProps = {
+        id: row.id,
+        name: row.name,
+        ticker: row.ticker,
+        description: row.description,
+        market: {
+          id: row.marketId,
+          name: row.marketName,
+          description: row.marketDescription,
         },
-      );
-    });
+        createdAt: row.createdAt,
+        updatedAt: row.updatedAt,
+      };
+
+      return symbols;
+    } catch (error) {
+      throw error;
+    }
   }
 
   // +--------------------------+
@@ -124,7 +180,7 @@ export class SymbolModel {
   // +------------------------+
   // | Deleta SÍMBOLO pelo ID |
   // +------------------------+
-  public deleteSymbolById(id: number | string): Promise<boolean> {
+  public deleteSymbolById(id: number): Promise<boolean> {
     return new Promise((resolve, reject) => {
       this.db.run("DELETE FROM symbols WHERE id = ?", [id], function (err) {
         if (err) {

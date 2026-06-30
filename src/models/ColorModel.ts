@@ -75,7 +75,7 @@ export class ColorModel {
   // +-------------------+
   // | Busca COR pelo ID |
   // +-------------------+
-  public getColorById(id: number | string): Promise<ColorProps | null> {
+  public getColorById(id: number): Promise<ColorProps | null> {
     return new Promise((resolve, reject) => {
       this.db.get(
         "SELECT * FROM colors WHERE id = ?",
@@ -113,7 +113,7 @@ export class ColorModel {
   // +--------------------+
   // | Deleta COR pelo ID |
   // +--------------------+
-  public deleteColorById(id: number | string): Promise<boolean> {
+  public deleteColorById(id: number): Promise<boolean> {
     return new Promise((resolve, reject) => {
       this.db.run("DELETE FROM colors WHERE id = ?", [id], function (err) {
         if (err) {

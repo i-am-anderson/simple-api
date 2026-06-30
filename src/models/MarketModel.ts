@@ -75,7 +75,7 @@ export class MarketModel {
   // +-----------------------+
   // | Busca MERCADO pelo ID |
   // +-----------------------+
-  public getMarketById(id: number | string): Promise<MarketProps | null> {
+  public getMarketById(id: number): Promise<MarketProps | null> {
     return new Promise((resolve, reject) => {
       this.db.get(
         "SELECT * FROM markets WHERE id = ?",
@@ -117,7 +117,7 @@ export class MarketModel {
   // +------------------------+
   // | Deleta MERCADO pelo ID |
   // +------------------------+
-  public deleteMarketById(id: number | string): Promise<boolean> {
+  public deleteMarketById(id: number): Promise<boolean> {
     return new Promise((resolve, reject) => {
       this.db.run("DELETE FROM markets WHERE id = ?", [id], function (err) {
         if (err) {

@@ -75,7 +75,7 @@ export class AccountModel {
   // +-----------------------+
   // | Busca ACCOUNT pelo ID |
   // +-----------------------+
-  public getAccountById(id: number | string): Promise<AccountProps | null> {
+  public getAccountById(id: number): Promise<AccountProps | null> {
     return new Promise((resolve, reject) => {
       this.db.get(
         "SELECT * FROM accounts WHERE id = ?",
@@ -117,7 +117,7 @@ export class AccountModel {
   // +------------------------+
   // | Deleta ACCOUNT pelo ID |
   // +------------------------+
-  public deleteAccountById(id: number | string): Promise<boolean> {
+  public deleteAccountById(id: number): Promise<boolean> {
     return new Promise((resolve, reject) => {
       this.db.run("DELETE FROM accounts WHERE id = ?", [id], function (err) {
         if (err) {

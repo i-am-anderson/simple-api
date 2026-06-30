@@ -81,7 +81,7 @@ export class TimeframeModel {
   // +-------------------------+
   // | Busca TIMEFRAME pelo ID |
   // +-------------------------+
-  public getTimeframeById(id: number | string): Promise<TimeframeProps | null> {
+  public getTimeframeById(id: number): Promise<TimeframeProps | null> {
     return new Promise((resolve, reject) => {
       this.db.get(
         "SELECT * FROM timeframes WHERE id = ?",
@@ -123,7 +123,7 @@ export class TimeframeModel {
   // +--------------------------+
   // | Deleta TIMEFRAME pelo ID |
   // +--------------------------+
-  public deleteTimeframeById(id: number | string): Promise<boolean> {
+  public deleteTimeframeById(id: number): Promise<boolean> {
     return new Promise((resolve, reject) => {
       this.db.run("DELETE FROM timeframes WHERE id = ?", [id], function (err) {
         if (err) {
