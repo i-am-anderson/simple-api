@@ -1,6 +1,5 @@
 import type { Database } from "sqlite3";
-import { AllColorsProps, ColorProps } from "../types";
-import { FilterColorProps } from "../types/color.type";
+import { AllColorsProps, ColorProps, FilterColorProps } from "../types";
 
 export class ColorModel {
   private db: Database;

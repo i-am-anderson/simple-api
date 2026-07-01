@@ -360,8 +360,7 @@ export { default as db } from "./database.config";
 
 ```typescript
 import type { Database } from "sqlite3";
-import { AllColorsProps, ColorProps } from "../types";
-import { FilterColorProps } from "../types/color.type";
+import { AllColorsProps, ColorProps, FilterColorProps } from "../types";
 
 export class ColorModel {
   private db: Database;
@@ -519,8 +518,7 @@ export const ColorModel = new ColorModelClass(db);
 ```typescript
 import type { Request, Response } from "express";
 import { ColorModel } from "../models";
-import { ColorProps } from "../types";
-import { LocalsColorProps } from "../types/color.type";
+import { ColorProps, LocalsColorProps } from "../types";
 
 export class ColorController {
   // +-------------------+
@@ -714,8 +712,7 @@ export { default as ColorRoute } from "./color.route";
 
 ```typescript
 import { Request, Response, NextFunction } from "express";
-import { ColorProps } from "../types";
-import { QueryColorProps } from "../types/color.type";
+import { ColorProps, QueryColorProps } from "../types";
 
 export function validateBodyColor(
   req: Request<{}, {}, ColorProps>,

@@ -1,7 +1,6 @@
 import type { Request, Response } from "express";
 import { ColorModel } from "../models";
-import { ColorProps } from "../types";
-import { LocalsColorProps } from "../types/color.type";
+import { ColorProps, LocalsColorProps } from "../types";
 
 export class ColorController {
   // +-------------------+

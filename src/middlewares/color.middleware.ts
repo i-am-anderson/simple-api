@@ -1,6 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-import { ColorProps } from "../types";
-import { QueryColorProps } from "../types/color.type";
+import { ColorProps, QueryColorProps } from "../types";
 
 export function validateBodyColor(
   req: Request<{}, {}, ColorProps>,
