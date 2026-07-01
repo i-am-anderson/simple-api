@@ -37,11 +37,13 @@ export class TimeframeController {
     let { perPage, page } = req.query;
 
     let limit = Number(perPage);
+    
     if (!limit || Number.isNaN(limit) || limit < 1 || limit > 20) {
       limit = 20;
     }
 
     let currentPage = Number(page);
+
     if (!currentPage || Number.isNaN(currentPage) || currentPage < 1) {
       currentPage = 1;
     }

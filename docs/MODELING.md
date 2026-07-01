@@ -12,8 +12,8 @@ symbols     (id, name, ticker, idMarket, description?)
 # Regras, Estratégias e Setups
 ```
 strategies  (id, name, description, idColor)
-setups      (id, name, description, idColor)
 principles  (id, idStrategy, name, description?)
+setups      (id, name, description, idColor)
 rules       (id, idSetup, name, description?)
 ```
 

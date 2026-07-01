@@ -1,0 +1,37 @@
+[
+  {
+    "idStrategy": 1,
+    "name": "Kumo",
+    "description": "Alinhamento com a Nuvem (Kumo): Operar compras apenas se o preço estiver acima da nuvem e vendas apenas se o preço estiver abaixo da nuvem."
+  },
+  {
+    "idStrategy": 1,
+    "name": "Kijun-sen e Tenkan-sen",
+    "description": "Confluência com Linhas de Equilíbrio: O gatilho de Price Action deve ocorrer testando ou rejeitando a Kijun-sen (linha de 26 períodos) ou a Tenkan-sen (linha de 9 períodos)."
+  },
+  {
+    "idStrategy": 1,
+    "name": "Gatilhos de Compra Homologados",
+    "description": "Gatilhos de Compra Homologados: Executar ordens exclusivamente através de 1,2,3 de compra, Inside Bar, 2 Bars Reversal ou Preço de Fechamento de Reversão (PFR) de alta."
+  },
+  {
+    "idStrategy": 1,
+    "name": "Gatilhos de Venda Homologados",
+    "description": "Gatilhos de Venda Homologados: Executar ordens exclusivamente através de 1,2,3 de venda, Inside Bar, 2 Bars Reversal ou Preço de Fechamento de Reversão (PFR) de baixa."
+  },
+  {
+    "idStrategy": 1,
+    "name": "Confirmação pelo Fechamento",
+    "description": "Confirmação pelo Fechamento: A entrada só é válida após o fechamento completo do candle de 10 minutos que confirmou o padrão de reversão."
+  },
+  {
+    "idStrategy": 1,
+    "name": "Risco x Retorno Mínimo",
+    "description": "Relação Risco x Retorno Mínima: Projetar alvos técnicos que ofereçam uma proporção de no mínimo 2:1 em relação ao tamanho do Stop Loss inicial."
+  },
+  {
+    "idStrategy": 1,
+    "name": "Filtro Espacial (Chikou Span)",
+    "description": "Filtro Espacial (Chikou Span): Validar se a linha Lagging Span (Chikou) está livre de obstáculos (preços passados) para confirmar o espaço livre para o movimento."
+  }
+]

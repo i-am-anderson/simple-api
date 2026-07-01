@@ -80,6 +80,32 @@ const db = new sqlite3.Database(dbPath, (err) => {
         );
       `);
 
+    // STRATEGIES
+    db.run(`
+        CREATE TABLE IF NOT EXISTS strategies (
+          id INTEGER PRIMARY KEY AUTOINCREMENT,
+          name TEXT NOT NULL UNIQUE,
+          description TEXT NOT NULL,
+          idColor INTEGER NOT NULL,
+          createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
+          updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP,
+          FOREIGN KEY (idColor) REFERENCES colors(id) ON DELETE SET NULL
+        );
+      `);
+
+    // PRINCIPLES
+    db.run(`
+        CREATE TABLE IF NOT EXISTS principles (
+          id INTEGER PRIMARY KEY AUTOINCREMENT,
+          idStrategy INTEGER NOT NULL,
+          name TEXT NOT NULL,
+          description TEXT NOT NULL,
+          createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
+          updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP,
+          FOREIGN KEY (idStrategy) REFERENCES strategies(id) ON DELETE CASCADE
+        );
+      `);
+
     // +-------------------------------------------+
     // | CRIAÇÃO DAS TRIGGERS, SE NÃO EXISTIREM... |
     // +-------------------------------------------+

@@ -13,14 +13,11 @@ content-type: application/json
   "hexColor": "#8E4585"
 }
 
-
 ### Busca todas as CORES (1 <= perPage <= 20)
 GET http://localhost:3600/api/v1/colors?perPage=5&page=1
 
-
 ### Busca COR pelo ID 
 GET http://localhost:3600/api/v1/colors/1
-
 
 ### Atualiza COR pelo ID 
 PATCH http://localhost:3600/api/v1/colors/3
@@ -48,14 +45,11 @@ content-type: application/json
   "description": "Conta padrão."
 }
 
-
 ### Busca todas as CONTAS (1 <= perPage <= 20)
 GET http://localhost:3600/api/v1/accounts?perPage=5&page=1
 
-
 ### Busca CONTA pelo ID 
 GET http://localhost:3600/api/v1/accounts/1
-
 
 ### Atualiza CONTA pelo ID 
 PATCH http://localhost:3600/api/v1/accounts/1
@@ -83,14 +77,11 @@ content-type: application/json
   "description": "TIMEFRAME de 1 hora."
 }
 
-
 ### Busca todos os TIMEFRAMES (1 <= perPage <= 20)
 GET http://localhost:3600/api/v1/timeframes?perPage=5&page=1
 
-
 ### Busca TIMEFRAME pelo ID 
 GET http://localhost:3600/api/v1/timeframes/1
-
 
 ### Atualiza TIMEFRAME pelo ID 
 PATCH http://localhost:3600/api/v1/timeframes/1
@@ -118,14 +109,11 @@ content-type: application/json
   "description": "MERCADO de ações à vista."
 }
 
-
 ### Busca todos os MERCADOS (1 <= perPage <= 20)
 GET http://localhost:3600/api/v1/markets?perPage=5&page=1
 
-
 ### Busca MERCADO pelo ID 
 GET http://localhost:3600/api/v1/markets/1
-
 
 ### Atualiza MERCADO pelo ID 
 PATCH http://localhost:3600/api/v1/markets/1
@@ -155,14 +143,11 @@ content-type: application/json
   "description": "Ação preferencial da Ferbasa, uma das maiores empresas de ferro do Brasil. Bolsa: B3. Setor: Materiais Básicos. Segmento: Mineração. País: Brasil. Moeda: BRL. Tipo: Ação. Data de listagem: 30/10/2002. Código ISIN: BRFESAACNPR5. Código CNPJ: 33.000.167/0001-01."
 }
 
-
 ### Busca todos os SÍMBOLOS (1 <= perPage <= 20)
 GET http://localhost:3600/api/v1/symbols?perPage=5&page=1
 
-
 ### Busca SÍMBOLO pelo ID 
 GET http://localhost:3600/api/v1/symbols/1
-
 
 ### Atualiza SÍMBOLO pelo ID 
 PATCH http://localhost:3600/api/v1/symbols/1
@@ -177,3 +162,8 @@ content-type: application/json
 
 ### Deleta SÍMBOLO pelo ID
 DELETE  http://localhost:3600/api/v1/symbols/1
+
+
+###################################
+######      ESTRATÉGIAS      ######
+###################################

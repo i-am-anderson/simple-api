@@ -153,3 +153,47 @@ export type AllSymbolsProps = {
     totalPages: number;
   };
 };
+
+// +----------+
+// | STRATEGY |
+// +----------+
+export type StrategyProps = {
+  id?: number;
+  name: string;
+  description: string;
+  idColor: number;
+  createdAt?: string;
+  updatedAt?: string;
+};
+
+export type AllStrategyProps = {
+  data: StrategyProps[];
+  meta: {
+    currentPage: number;
+    perPage: number;
+    totalItems: number;
+    totalPages: number;
+  };
+};
+
+// +-----------+
+// | PRINCIPLE |
+// +-----------+
+export type PrincipleProps = {
+  id?: number;
+  idStrategy: number;
+  name: string;
+  description: string;
+  createdAt?: string;
+  updatedAt?: string;
+};
+
+export type AllPrinciplesProps = {
+  data: PrincipleProps[];
+  meta: {
+    currentPage: number;
+    perPage: number;
+    totalItems: number;
+    totalPages: number;
+  };
+};

@@ -1,0 +1,7 @@
+[
+  {
+    "name": "Ichimoku Kinko Hyo",
+    "description": "Estratégia baseada no indicador Ichimoku Kinko Hyo. O Ichimoku Kinko Hyo é um indicador técnico que fornece informações sobre suporte e resistência, direção da tendência, momentum e sinais de negociação. Ele é composto por cinco linhas principais: Tenkan-sen, Kijun-sen, Senkou Span A, Senkou Span B e Chikou Span. A estratégia envolve a análise dessas linhas para identificar oportunidades de compra e venda no mercado. A interpretação das linhas do Ichimoku Kinko Hyo pode variar dependendo da configuração do gráfico e do ativo negociado, mas geralmente, quando o preço está acima das nuvens (formadas pelas linhas Senkou Span A e B), é considerado um sinal de tendência de alta, enquanto quando o preço está abaixo das nuvens, é considerado um sinal de tendência de baixa. Além disso, os cruzamentos das linhas Tenkan-sen e Kijun-sen podem fornecer sinais adicionais de entrada e saída.",
+    "idColor": 5
+  }
+]
