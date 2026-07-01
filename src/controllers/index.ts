@@ -1,1 +1,1 @@
-export { ColorController } from "./ColorController";
+export { ColorController } from "./color.controller";

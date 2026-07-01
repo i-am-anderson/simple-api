@@ -1,5 +1,6 @@
 import type { Database } from "sqlite3";
 import { AllColorsProps, ColorProps } from "../types";
+import { FilterColorProps } from "../types/color.type";
 
 export class ColorModel {
   private db: Database;
@@ -33,11 +34,15 @@ export class ColorModel {
   public async getAllColors(
     perPage: number,
     rowsToSkip: number,
+    filters: FilterColorProps,
   ): Promise<AllColorsProps> {
+    const name = filters.name ? `%${filters.name}%` : null;
+    const hexColor = filters.hexColor || null;
+
     const getColors = new Promise<ColorProps[]>((resolve, reject) => {
       this.db.all(
-        "SELECT * FROM colors LIMIT ? OFFSET ?;",
-        [perPage, rowsToSkip],
+        "SELECT * FROM colors WHERE (name LIKE ? OR ? IS NULL) AND (hexColor = ? OR ? IS NULL) LIMIT ? OFFSET ?;",
+        [name, name, hexColor, hexColor, perPage, rowsToSkip],
         function (err, rows) {
           if (err) reject(err);
           else resolve(rows as ColorProps[]);
@@ -47,7 +52,8 @@ export class ColorModel {
 
     const getTotal = new Promise<number>((resolve, reject) => {
       this.db.get(
-        "SELECT COUNT(*) AS total FROM colors;",
+        "SELECT COUNT(*) AS total FROM colors WHERE (name LIKE ? OR ? IS NULL) AND (hexColor = ? OR ? IS NULL);",
+        [name, name, hexColor, hexColor],
         function (err, row: { total: number }) {
           if (err) reject(err);
           else resolve(row.total);
@@ -58,8 +64,14 @@ export class ColorModel {
     try {
       const [colors, totalCount] = await Promise.all([getColors, getTotal]);
 
+      const data = colors.map((color) => ({
+        ...color,
+        createdAt: new Date(`${color.createdAt}Z`).toISOString(),
+        updatedAt: new Date(`${color.updatedAt}Z`).toISOString(),
+      }));
+
       return {
-        data: colors,
+        data,
         meta: {
           currentPage: Math.floor(rowsToSkip / perPage) + 1,
           perPage: perPage,
@@ -75,16 +87,20 @@ export class ColorModel {
   // +-------------------+
   // | Busca COR pelo ID |
   // +-------------------+
-  public getColorById(id: number | string): Promise<ColorProps | null> {
+  public getColorById(id: number): Promise<ColorProps | null> {
     return new Promise((resolve, reject) => {
       this.db.get(
         "SELECT * FROM colors WHERE id = ?",
         [id],
-        function (err, row) {
+        function (err, row: ColorProps) {
           if (err) {
             reject(err);
           } else {
-            resolve((row as ColorProps) || null);
+            resolve({
+              ...row,
+              createdAt: new Date(`${row.createdAt}Z`).toISOString(),
+              updatedAt: new Date(`${row.updatedAt}Z`).toISOString(),
+            });
           }
         },
       );
@@ -113,7 +129,7 @@ export class ColorModel {
   // +--------------------+
   // | Deleta COR pelo ID |
   // +--------------------+
-  public deleteColorById(id: number | string): Promise<boolean> {
+  public deleteColorById(id: number): Promise<boolean> {
     return new Promise((resolve, reject) => {
       this.db.run("DELETE FROM colors WHERE id = ?", [id], function (err) {
         if (err) {

@@ -1,19 +1,17 @@
 import type { Request, Response } from "express";
 import { ColorModel } from "../models";
+import { ColorProps } from "../types";
+import { LocalsColorProps } from "../types/color.type";
 
 export class ColorController {
   // +-------------------+
   // | Cria uma nova COR |
   // +-------------------+
-  public static async create(req: Request, res: Response): Promise<void> {
+  public static async create(
+    req: Request<{}, {}, ColorProps>,
+    res: Response,
+  ): Promise<void> {
     const { name, hexColor } = req.body;
-
-    if (!name || !hexColor) {
-      res
-        .status(400)
-        .json({ error: "Nome e código hexadecimal da COR são obrigatórios." });
-      return;
-    }
 
     try {
       const newColorId = await ColorModel.createColor({ name, hexColor });
@@ -30,23 +28,20 @@ export class ColorController {
   // +----------------------+
   // | Busca todas as CORES |
   // +----------------------+
-  public static async getAll(req: Request, res: Response): Promise<void> {
-    let { perPage, page } = req.query;
-
-    let limit = Number(perPage);
-    if (!limit || Number.isNaN(limit) || limit < 1 || limit > 20) {
-      limit = 20;
-    }
-
-    let currentPage = Number(page);
-    if (!currentPage || Number.isNaN(currentPage) || currentPage < 1) {
-      currentPage = 1;
-    }
-
-    const rowsToSkip = (currentPage - 1) * limit;
+  public static async getAll(
+    _: Request,
+    res: Response<
+      {},
+      LocalsColorProps
+    >,
+  ): Promise<void> {
+    const { limit, rowsToSkip, name, hexColor } = res.locals;
 
     try {
-      const colors = await ColorModel.getAllColors(limit, rowsToSkip);
+      const colors = await ColorModel.getAllColors(limit, rowsToSkip, {
+        name,
+        hexColor,
+      });
 
       if (!colors) {
         res.status(404).json({ error: "CORES não encontradas." });
@@ -64,16 +59,14 @@ export class ColorController {
   // +-------------------+
   // | Busca COR pelo ID |
   // +-------------------+
-  public static async getOne(req: Request, res: Response): Promise<void> {
+  public static async getOne(
+    req: Request<{ id: string }>,
+    res: Response,
+  ): Promise<void> {
     const { id } = req.params;
 
-    if (!id || Number.isNaN(Number(id))) {
-      res.status(400).json({ error: "ID é obrigatório." });
-      return;
-    }
-
     try {
-      const color = await ColorModel.getColorById(id);
+      const color = await ColorModel.getColorById(Number(id));
 
       if (!color) {
         res.status(404).json({ error: "COR não encontrada." });
@@ -89,19 +82,19 @@ export class ColorController {
   // +----------------------+
   // | Atualiza COR pelo ID |
   // +----------------------+
-  public static async update(req: Request, res: Response): Promise<void> {
-    const { id } = req.params;
+  public static async update(
+    req: Request<{ id: string }, {}, ColorProps>,
+    res: Response,
+  ): Promise<void> {
     const { name, hexColor } = req.body;
-
-    if (!id || Number.isNaN(Number(id)) || !name || !hexColor) {
-      res.status(400).json({
-        error: "ID, nome e código hexadecimal da COR são obrigatórios.",
-      });
-      return;
-    }
+    const { id } = req.params;
 
     try {
-      const color = await ColorModel.updateColorById({ id, name, hexColor });
+      const color = await ColorModel.updateColorById({
+        id: Number(id),
+        name,
+        hexColor,
+      });
 
       if (!color) {
         res.status(404).json({ error: "COR não encontrada." });
@@ -119,16 +112,14 @@ export class ColorController {
   // +--------------------+
   // | Deleta COR pelo ID |
   // +--------------------+
-  public static async delete(req: Request, res: Response): Promise<void> {
+  public static async delete(
+    req: Request<{ id: string }>,
+    res: Response,
+  ): Promise<void> {
     const { id } = req.params;
 
-    if (!id || Number.isNaN(Number(id))) {
-      res.status(400).json({ error: "ID é obrigatório." });
-      return;
-    }
-
     try {
-      const isColorDeleted = await ColorModel.deleteColorById(id);
+      const isColorDeleted = await ColorModel.deleteColorById(Number(id));
 
       if (!isColorDeleted) {
         res.status(404).json({ error: "COR não encontrada." });

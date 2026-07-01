@@ -1,1 +1,1 @@
-export { default as ColorRoute } from "./ColorRoute";
+export { default as ColorRoute } from "./color.route";

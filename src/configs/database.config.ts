@@ -1,6 +1,6 @@
 import sqlite3 from "sqlite3";
 import path from "path";
-import { consoleColors } from "../utils/consoleColors";
+import { consoleColors } from "../utils";
 
 const dbPath = path.resolve(__dirname, "../../database.sqlite");
 const { BOLD_RED, BOLD_GREEN, RED, RESET } = consoleColors;
@@ -11,13 +11,17 @@ const db = new sqlite3.Database(dbPath, (err) => {
       `${BOLD_RED}Erro ao conectar ao banco de dados SQLite:${RESET} ${RED}${err.message}${RESET}`,
     );
   } else {
-    console.log(`\n${BOLD_GREEN}Conectado ao banco de dados SQLite...${RESET}\n`);
+    db.run("PRAGMA foreign_keys = ON;");
+
+    console.log(
+      `\n${BOLD_GREEN}Conectado ao banco de dados SQLite...${RESET}\n`,
+    );
 
     // +------------------------------------------+
     // | CRIAÇÃO DAS TABELAS, SE NÃO EXISTIREM... |
     // +------------------------------------------+
 
-    // COLORS
+    // CORES
     db.run(`
         CREATE TABLE IF NOT EXISTS colors (
           id INTEGER PRIMARY KEY AUTOINCREMENT,

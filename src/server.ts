@@ -1,10 +1,11 @@
 import express from "express";
 import cors from "cors";
+import { global } from "./configs";
+import { consoleColors } from "./utils";
 import { ColorRoute } from "./routes";
-import { consoleColors } from "./utils/consoleColors";
 
 const app = express();
-const PORT = process.env.PORT || 3600;
+const PORT = global.port
 const { BOLD_CYAN, UNDERLINE, RESET } = consoleColors;
 
 // Middlewares
@@ -23,5 +24,7 @@ app.use("/api/v1", ColorRoute);
 
 // Iniciar servidor
 app.listen(PORT, () => {
-  console.log(`Servidor iniciado em ${BOLD_CYAN}${UNDERLINE}http://localhost:${PORT}${RESET}`);
+  console.log(
+    `Servidor iniciado em ${BOLD_CYAN}${UNDERLINE}http://localhost:${PORT}${RESET}`,
+  );
 });
