@@ -453,15 +453,14 @@ export class ColorModel {
         "SELECT * FROM colors WHERE id = ?",
         [id],
         function (err, row: ColorProps) {
-          if (err) {
-            reject(err);
-          } else {
-            resolve({
-              ...row,
-              createdAt: new Date(`${row.createdAt}Z`).toISOString(),
-              updatedAt: new Date(`${row.updatedAt}Z`).toISOString(),
-            });
-          }
+          if (err) return reject(err);
+          if (!row) return resolve(null);
+
+          resolve({
+            ...row,
+            createdAt: new Date(`${row.createdAt}Z`).toISOString(),
+            updatedAt: new Date(`${row.updatedAt}Z`).toISOString(),
+          });
         },
       );
     });
