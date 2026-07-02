@@ -1,31 +1,29 @@
+## MVC + Barrel Pattern + Nomenclatura por Sufixo Técnico
+
 ### 1. Configuração Inicial e Dependências
 
 Crie a pasta do seu projeto, abra o terminal nela e inicie o Node:
 
 ```bash
 npm init -y
-
 ```
 
 Instale as dependências principais que você solicitou:
 
 ```bash
 npm install cors express sqlite3
-
 ```
 
 Instale as dependências de desenvolvimento para o TypeScript e o Nodemon funcionarem em conjunto:
 
 ```bash
 npm install -D tsx typescript @types/cors @types/express @types/node @types/sqlite3
-
 ```
 
 Inicie a configuração do TypeScript:
 
 ```bash
 npx tsc --init
-
 ```
 
 _(Dica: No arquivo `tsconfig.json` gerado, certifique-se de que `"outDir": "./dist"` e `"rootDir": "./src"` estejam descomentados para manter a organização). Altere "verbatimModuleSyntax" para false_
@@ -36,24 +34,34 @@ Crie a seguinte estrutura dentro da raiz do seu projeto. O padrão MVC separa a 
 
 ```text
 📦simple-api
+ ┣ 📂mocks
+ ┃ ┗ 📜color.mock.json
  ┣ 📂src
  ┃ ┣ 📂config
- ┃ ┃ ┗ 📜database.ts
+ ┃ ┃ ┣ 📜index.ts
+ ┃ ┃ ┣ 📜global.config.ts
+ ┃ ┃ ┗ 📜database.config.ts
  ┃ ┣ 📂controllers
- ┃ ┃ ┃ 📜index.ts
- ┃ ┃ ┗ 📜ColorController.ts
+ ┃ ┃ ┣ 📜index.ts
+ ┃ ┃ ┗ 📜color.controller.ts
  ┃ ┣ 📂middleware
- ┃ ┃ ┗ 📜validateHexColor.ts
+ ┃ ┃ ┣ 📜index.ts
+ ┃ ┃ ┗ 📜color.middleware.ts
  ┃ ┣ 📂models
- ┃ ┃ ┃ 📜index.ts
- ┃ ┃ ┗ 📜ColorModel.ts
+ ┃ ┃ ┣ 📜index.ts
+ ┃ ┃ ┗ 📜color.model.ts
  ┃ ┣ 📂routes
- ┃ ┃ ┗ 📜ColorRoute.ts
+ ┃ ┃ ┣ 📜index.ts
+ ┃ ┃ ┗ 📜color.route.ts
  ┃ ┣ 📂types
- ┃ ┃ ┗ 📜index.ts
- ┃ ┣ 📂utils
- ┃ ┃ ┗ 📜consoleColors.ts
+ ┃ ┃ ┣ 📜index.ts
+ ┃ ┃ ┣ 📜color.type.ts
+ ┃ ┃ ┗ 📜util.type.ts
+ ┃ ┣ 📂helpers
+ ┃ ┃ ┣ 📜index.ts
+ ┃ ┃ ┗ 📜console-colors.helper.ts
  ┃ ┗ 📜server.ts
+ ┣ 📜.env
  ┣ 📜.gitignore
  ┣ 📜api.http
  ┣ 📜database.sqlite
@@ -65,28 +73,202 @@ Crie a seguinte estrutura dentro da raiz do seu projeto. O padrão MVC separa a 
 ```
 
 ```text
-                  ColorController.ts
-                          ↑
-server.ts → ROUTES → CONTROLLERS → MODELS → database.ts
-              ↓                      ↓
-        ColorRoute.ts          ColorModel.ts
+                  color.middleware.ts         color.model.ts
+                          ↑                         ↑
+server.ts → ROUTES → MIDDLEWARES → CONTROLLERS → MODELS → database.ts
+              ↓                         ↓
+        color.route.ts          color.controller.ts
 ```
 
 ---
 
 ### 3. Arquivos de Exemplo
 
+### `colors/color.mock.json`
+
+```json
+[
+  {
+    "name": "Preto",
+    "hexColor": "#000000"
+  },
+  {
+    "name": "Branco",
+    "hexColor": "#FFFFFF"
+  },
+  {
+    "name": "Vermelho",
+    "hexColor": "#FF0000"
+  },
+  {
+    "name": "Verde",
+    "hexColor": "#008000"
+  },
+  {
+    "name": "Azul",
+    "hexColor": "#0000FF"
+  },
+  {
+    "name": "Amarelo",
+    "hexColor": "#FFFF00"
+  },
+  {
+    "name": "Laranja",
+    "hexColor": "#FFA500"
+  },
+  {
+    "name": "Roxo",
+    "hexColor": "#800080"
+  },
+  {
+    "name": "Rosa",
+    "hexColor": "#FFC0CB"
+  },
+  {
+    "name": "Marrom",
+    "hexColor": "#8B4513"
+  },
+  {
+    "name": "Cinza",
+    "hexColor": "#808080"
+  },
+  {
+    "name": "Cinza Claro",
+    "hexColor": "#D3D3D3"
+  },
+  {
+    "name": "Cinza Escuro",
+    "hexColor": "#A9A9A9"
+  },
+  {
+    "name": "Ciano",
+    "hexColor": "#00FFFF"
+  },
+  {
+    "name": "Turquesa",
+    "hexColor": "#40E0D0"
+  },
+  {
+    "name": "Azul Claro",
+    "hexColor": "#ADD8E6"
+  },
+  {
+    "name": "Azul Marinho",
+    "hexColor": "#000080"
+  },
+  {
+    "name": "Azul Royal",
+    "hexColor": "#4169E1"
+  },
+  {
+    "name": "Verde Claro",
+    "hexColor": "#90EE90"
+  },
+  {
+    "name": "Verde Limão",
+    "hexColor": "#32CD32"
+  },
+  {
+    "name": "Verde Escuro",
+    "hexColor": "#006400"
+  },
+  {
+    "name": "Oliva",
+    "hexColor": "#808000"
+  },
+  {
+    "name": "Bege",
+    "hexColor": "#F5F5DC"
+  },
+  {
+    "name": "Creme",
+    "hexColor": "#FFFDD0"
+  },
+  {
+    "name": "Dourado",
+    "hexColor": "#FFD700"
+  },
+  {
+    "name": "Prata",
+    "hexColor": "#C0C0C0"
+  },
+  {
+    "name": "Coral",
+    "hexColor": "#FF7F50"
+  },
+  {
+    "name": "Salmão",
+    "hexColor": "#FA8072"
+  },
+  {
+    "name": "Vinho",
+    "hexColor": "#722F37"
+  },
+  {
+    "name": "Bordô",
+    "hexColor": "#800020"
+  },
+  {
+    "name": "Lilás",
+    "hexColor": "#C8A2C8"
+  },
+  {
+    "name": "Lavanda",
+    "hexColor": "#E6E6FA"
+  },
+  {
+    "name": "Índigo",
+    "hexColor": "#4B0082"
+  },
+  {
+    "name": "Magenta",
+    "hexColor": "#FF00FF"
+  },
+  {
+    "name": "Caramelo",
+    "hexColor": "#C68E17"
+  },
+  {
+    "name": "Chocolate",
+    "hexColor": "#7B3F00"
+  },
+  {
+    "name": "Caqui",
+    "hexColor": "#C3B091"
+  },
+  {
+    "name": "Areia",
+    "hexColor": "#C2B280"
+  },
+  {
+    "name": "Pêssego",
+    "hexColor": "#FFDAB9"
+  },
+  {
+    "name": "Ameixa",
+    "hexColor": "#8E4585"
+  }
+]
+```
+
+#### `.env`
+
+```env
+PORT=3600
+```
+
 #### `server.ts`
 
 ```typescript
 import express from "express";
 import cors from "cors";
-import { userRoutes } from "./routes";
-import { consoleColors } from "./utils/consoleColors";
+import { global } from "./configs";
+import { consoleColors } from "./helpers";
+import { ColorRoute } from "./routes";
 
 const app = express();
-const PORT = process.env.PORT || 3600;
-const { BOLD_CYAN, RESET } = consoleColors;
+const PORT = global.port;
+const { BOLD_CYAN, UNDERLINE, RESET } = consoleColors;
 
 // Middlewares
 app.use(
@@ -100,24 +282,22 @@ app.use(
 app.use(express.json());
 
 // Rotas
-app.use("/api/v1", userRoutes);
+app.use("/api/v1", ColorRoute);
 
 // Iniciar servidor
 app.listen(PORT, () => {
-  console.log(`Running in ${BOLD_CYAN}http://localhost:${PORT}${RESET}`);
+  console.log(
+    `Servidor iniciado em ${BOLD_CYAN}${UNDERLINE}http://localhost:${PORT}${RESET}`,
+  );
 });
 ```
 
-Abaixo estão os arquivos iniciais para cada pasta. Construí um CRUD básico de leitura de usuários para exemplificar o fluxo.
-
-#### `src/config/database.ts`
-
-Este arquivo centraliza a conexão com o banco de dados SQLite. Ele cria o arquivo `database.sqlite` na raiz se não existir e já cria uma tabela de exemplo.
+#### `src/configs/database.config.ts`
 
 ```typescript
 import sqlite3 from "sqlite3";
 import path from "path";
-import { consoleColors } from "../utils/consoleColors";
+import { consoleColors } from "../helpers";
 
 const dbPath = path.resolve(__dirname, "../../database.sqlite");
 const { BOLD_RED, BOLD_GREEN, RED, RESET } = consoleColors;
@@ -128,13 +308,17 @@ const db = new sqlite3.Database(dbPath, (err) => {
       `${BOLD_RED}Erro ao conectar ao banco de dados SQLite:${RESET} ${RED}${err.message}${RESET}`,
     );
   } else {
-    console.log(`\n${BOLD_GREEN}Conectado ao banco de dados SQLite.${RESET}\n`);
+    db.run("PRAGMA foreign_keys = ON;");
+
+    console.log(
+      `\n${BOLD_GREEN}Conectado ao banco de dados SQLite...${RESET}\n`,
+    );
 
     // +------------------------------------------+
     // | CRIAÇÃO DAS TABELAS, SE NÃO EXISTIREM... |
     // +------------------------------------------+
 
-    // COLORS
+    // CORES
     db.run(`
         CREATE TABLE IF NOT EXISTS colors (
           id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -148,30 +332,35 @@ const db = new sqlite3.Database(dbPath, (err) => {
     // +-------------------------------------------+
     // | CRIAÇÃO DAS TRIGGERS, SE NÃO EXISTIREM... |
     // +-------------------------------------------+
-
-    // COLORS
-    db.run(`
-          CREATE TRIGGER IF NOT EXISTS update_colors_updatedAt
-          AFTER UPDATE ON colors
-          BEGIN
-              UPDATE colors 
-              SET updatedAt = CURRENT_TIMESTAMP 
-              WHERE id = OLD.id;
-          END;
-        `);
   }
 });
 
 export default db;
 ```
 
-#### `src/models/ColorModel.ts`
+#### `src/configs/global.config.ts`
 
-O Model é o único lugar que interage com o banco de dados. Como o `sqlite3` trabalha com callbacks, encapsulamos as operações em `Promises` para que o Controller possa usar `async/await` de forma limpa.
+```typescript
+const global = {
+  get port() {
+    return process.env.PORT || 3000;
+  },
+};
+
+export default global;
+```
+
+#### `src/configs/index.ts`
+
+```typescript
+export { default as db } from "./database.config";
+```
+
+#### `src/models/color.model.ts`
 
 ```typescript
 import type { Database } from "sqlite3";
-import { AllColorsProps, ColorProps } from "../types";
+import { AllColorsProps, ColorProps, FilterColorProps } from "../types";
 
 export class ColorModel {
   private db: Database;
@@ -205,11 +394,15 @@ export class ColorModel {
   public async getAllColors(
     perPage: number,
     rowsToSkip: number,
+    filters: FilterColorProps,
   ): Promise<AllColorsProps> {
+    const name = filters.name ? `%${filters.name}%` : null;
+    const hexColor = filters.hexColor || null;
+
     const getColors = new Promise<ColorProps[]>((resolve, reject) => {
       this.db.all(
-        "SELECT * FROM colors LIMIT ? OFFSET ?;",
-        [perPage, rowsToSkip],
+        "SELECT * FROM colors WHERE (name LIKE ? OR ? IS NULL) AND (hexColor = ? OR ? IS NULL) LIMIT ? OFFSET ?;",
+        [name, name, hexColor, hexColor, perPage, rowsToSkip],
         function (err, rows) {
           if (err) reject(err);
           else resolve(rows as ColorProps[]);
@@ -219,7 +412,8 @@ export class ColorModel {
 
     const getTotal = new Promise<number>((resolve, reject) => {
       this.db.get(
-        "SELECT COUNT(*) AS total FROM colors;",
+        "SELECT COUNT(*) AS total FROM colors WHERE (name LIKE ? OR ? IS NULL) AND (hexColor = ? OR ? IS NULL);",
+        [name, name, hexColor, hexColor],
         function (err, row: { total: number }) {
           if (err) reject(err);
           else resolve(row.total);
@@ -230,8 +424,14 @@ export class ColorModel {
     try {
       const [colors, totalCount] = await Promise.all([getColors, getTotal]);
 
+      const data = colors.map((color) => ({
+        ...color,
+        createdAt: new Date(`${color.createdAt}Z`).toISOString(),
+        updatedAt: new Date(`${color.updatedAt}Z`).toISOString(),
+      }));
+
       return {
-        data: colors,
+        data,
         meta: {
           currentPage: Math.floor(rowsToSkip / perPage) + 1,
           perPage: perPage,
@@ -252,11 +452,15 @@ export class ColorModel {
       this.db.get(
         "SELECT * FROM colors WHERE id = ?",
         [id],
-        function (err, row) {
+        function (err, row: ColorProps) {
           if (err) {
             reject(err);
           } else {
-            resolve((row as ColorProps) || null);
+            resolve({
+              ...row,
+              createdAt: new Date(`${row.createdAt}Z`).toISOString(),
+              updatedAt: new Date(`${row.updatedAt}Z`).toISOString(),
+            });
           }
         },
       );
@@ -269,7 +473,7 @@ export class ColorModel {
   public updateColorById({ id, name, hexColor }: ColorProps): Promise<boolean> {
     return new Promise((resolve, reject) => {
       this.db.run(
-        "UPDATE colors SET name = ?, hexColor = ? WHERE id = ?",
+        "UPDATE colors SET name = ?, hexColor = ?, updatedAt = CURRENT_TIMESTAMP WHERE id = ?",
         [name, hexColor, id],
         function (err) {
           if (err) {
@@ -302,34 +506,29 @@ export class ColorModel {
 #### `src/models/index.ts`
 
 ```typescript
-import db from "../config/database";
-import { ColorModel as ColorModelClass } from "./ColorModel";
+import { db } from "../configs";
+import { ColorModel as ColorModelClass } from "./color.model";
 
 // Injeção de Dependência
 export const ColorModel = new ColorModelClass(db);
 ```
 
-#### `src/controllers/ColorController.ts`
-
-O Controller recebe a requisição, chama o Model para processar os dados e devolve a resposta HTTP adequada. Nenhuma query SQL deve existir aqui.
+#### `src/controllers/color.controller.ts`
 
 ```typescript
 import type { Request, Response } from "express";
 import { ColorModel } from "../models";
+import { ColorProps, LocalsColorProps } from "../types";
 
 export class ColorController {
   // +-------------------+
   // | Cria uma nova COR |
   // +-------------------+
-  public static async create(req: Request, res: Response): Promise<void> {
+  public static async create(
+    req: Request<{}, {}, ColorProps>,
+    res: Response,
+  ): Promise<void> {
     const { name, hexColor } = req.body;
-
-    if (!name || !hexColor) {
-      res
-        .status(400)
-        .json({ error: "Nome e código hexadecimal da COR são obrigatórios." });
-      return;
-    }
 
     try {
       const newColorId = await ColorModel.createColor({ name, hexColor });
@@ -346,25 +545,20 @@ export class ColorController {
   // +----------------------+
   // | Busca todas as CORES |
   // +----------------------+
-  public static async getAll(req: Request, res: Response): Promise<void> {
-    let { perPage, page } = req.query;
-
-    let limit = Number(perPage);
-    
-    if (!limit || Number.isNaN(limit) || limit < 1 || limit > 20) {
-      limit = 20;
-    }
-
-    let currentPage = Number(page);
-
-    if (!currentPage || Number.isNaN(currentPage) || currentPage < 1) {
-      currentPage = 1;
-    }
-
-    const rowsToSkip = (currentPage - 1) * limit;
+  public static async getAll(
+    _: Request,
+    res: Response<
+      {},
+      LocalsColorProps
+    >,
+  ): Promise<void> {
+    const { limit, rowsToSkip, name, hexColor } = res.locals;
 
     try {
-      const colors = await ColorModel.getAllColors(limit, rowsToSkip);
+      const colors = await ColorModel.getAllColors(limit, rowsToSkip, {
+        name,
+        hexColor,
+      });
 
       if (!colors) {
         res.status(404).json({ error: "CORES não encontradas." });
@@ -382,16 +576,14 @@ export class ColorController {
   // +-------------------+
   // | Busca COR pelo ID |
   // +-------------------+
-  public static async getOne(req: Request, res: Response): Promise<void> {
+  public static async getOne(
+    req: Request<{ id: string }>,
+    res: Response,
+  ): Promise<void> {
+    const { id } = req.params;
+
     try {
-      const { id } = req.params;
-
-      if (!id || Number.isNaN(Number(id))) {
-        res.status(400).json({ error: "ID é obrigatório." });
-        return;
-      }
-
-      const color = await ColorModel.getColorById(id);
+      const color = await ColorModel.getColorById(Number(id));
 
       if (!color) {
         res.status(404).json({ error: "COR não encontrada." });
@@ -407,19 +599,19 @@ export class ColorController {
   // +----------------------+
   // | Atualiza COR pelo ID |
   // +----------------------+
-  public static async update(req: Request, res: Response): Promise<void> {
+  public static async update(
+    req: Request<{ id: string }, {}, ColorProps>,
+    res: Response,
+  ): Promise<void> {
+    const { name, hexColor } = req.body;
+    const { id } = req.params;
+
     try {
-      const { id } = req.params;
-      const { name, hexColor } = req.body;
-
-      if (!id || Number.isNaN(Number(id)) || !name || !hexColor) {
-        res.status(400).json({
-          error: "ID, nome e código hexadecimal da COR são obrigatórios.",
-        });
-        return;
-      }
-
-      const color = await ColorModel.updateColorById({ id, name, hexColor });
+      const color = await ColorModel.updateColorById({
+        id: Number(id),
+        name,
+        hexColor,
+      });
 
       if (!color) {
         res.status(404).json({ error: "COR não encontrada." });
@@ -437,16 +629,14 @@ export class ColorController {
   // +--------------------+
   // | Deleta COR pelo ID |
   // +--------------------+
-  public static async delete(req: Request, res: Response): Promise<void> {
+  public static async delete(
+    req: Request<{ id: string }>,
+    res: Response,
+  ): Promise<void> {
+    const { id } = req.params;
+
     try {
-      const { id } = req.params;
-
-      if (!id || Number.isNaN(Number(id))) {
-        res.status(400).json({ error: "ID é obrigatório." });
-        return;
-      }
-
-      const isColorDeleted = await ColorModel.deleteColorById(id);
+      const isColorDeleted = await ColorModel.deleteColorById(Number(id));
 
       if (!isColorDeleted) {
         res.status(404).json({ error: "COR não encontrada." });
@@ -464,64 +654,77 @@ export class ColorController {
 ### `src/controllers/index.ts`
 
 ```typescript
-export { ColorController } from "./ColorController";
+export { ColorController } from "./color.controller";
 ```
 
-#### `src/routes/userRoutes.ts`
-
-As rotas ligam as URLs (endpoints) aos métodos do Controller.
+#### `src/routes/color.route.ts`
 
 ```typescript
 import { Router } from "express";
 import { ColorController } from "../controllers";
-import { validatehexColor } from "../middleware/validateHexColor";
+import {
+  validateBodyColor,
+  validateParamsColor,
+  validateQueryColor,
+} from "../middlewares";
 
 const router = Router();
 // +-------------------+
 // | Cria uma nova COR |
 // +-------------------+
-router.post("/colors", validatehexColor, ColorController.create);
+router.post("/colors", validateBodyColor, ColorController.create);
 
 // +----------------------+
 // | Busca todas as CORES |
 // +----------------------+
-router.get("/colors", ColorController.getAll);
+router.get("/colors", validateQueryColor, ColorController.getAll);
 
 // +-------------------+
 // | Busca COR pelo ID |
 // +-------------------+
-router.get("/colors/:id", ColorController.getOne);
+router.get("/colors/:id", validateParamsColor, ColorController.getOne);
 
 // +----------------------+
 // | Atualiza COR pelo ID |
 // +----------------------+
-router.patch("/colors/:id", validatehexColor, ColorController.update);
+router.patch(
+  "/colors/:id",
+  validateParamsColor,
+  validateBodyColor,
+  ColorController.update,
+);
 
 // +--------------------+
 // | Deleta COR pelo ID |
 // +--------------------+
-router.delete("/colors/:id", ColorController.delete);
+router.delete("/colors/:id", validateParamsColor, ColorController.delete);
 
 export default router;
 ```
 
-### `src/controllers/index.ts`
+#### `src/routes/index.ts`
 
 ```typescript
-export { default as userRoutes } from "./ColorRoute";
+export { default as ColorRoute } from "./color.route";
 ```
 
-### `src/middleware/validateHexColor.ts`
+### `src/middleware/color.middleware.ts`
 
 ```typescript
 import { Request, Response, NextFunction } from "express";
+import { ColorProps, QueryColorProps } from "../types";
 
-export function validatehexColor(
-  req: Request,
+export function validateBodyColor(
+  req: Request<{}, {}, ColorProps>,
   res: Response,
   next: NextFunction,
 ): void {
-  const { hexColor } = req.body;
+  const { name, hexColor } = req.body;
+
+  if (!name) {
+    res.status(400).json({ error: "O campo name é obrigatório." });
+    return;
+  }
 
   if (!hexColor) {
     res.status(400).json({ error: "O campo hexColor é obrigatório." });
@@ -544,14 +747,76 @@ export function validatehexColor(
 
   next();
 }
+
+export function validateParamsColor(
+  req: Request<{ id: string }>,
+  res: Response,
+  next: NextFunction,
+): void {
+  const { id } = req.params;
+
+  if (!id || Number.isNaN(Number(id))) {
+    res.status(400).json({
+      error: "ID é obrigatório.",
+    });
+    return;
+  }
+
+  next();
+}
+
+export function validateQueryColor(
+  req: Request<
+    {},
+    {},
+    {},
+    QueryColorProps
+  >,
+  res: Response,
+  next: NextFunction,
+): void {
+  const { perPage, page, name, hexColor } = req.query;
+
+  let limit = Number(perPage);
+  if (!limit || Number.isNaN(limit) || limit < 1 || limit > 20) {
+    limit = 20;
+  }
+
+  let currentPage = Number(page);
+  if (!currentPage || Number.isNaN(currentPage) || currentPage < 1) {
+    currentPage = 1;
+  }
+
+  const rowsToSkip = (currentPage - 1) * limit;
+
+  const name_ = name ? String(name).trim() : "";
+  const hexColor_ = hexColor ? String(hexColor).trim() : "";
+
+  res.locals.limit = limit;
+  res.locals.rowsToSkip = rowsToSkip;
+  res.locals.name = name_;
+  res.locals.hexColor = hexColor_;
+
+  next();
+}
 ```
 
-### `src/types/index.ts`
+### `src/middleware/index.ts`
 
 ```typescript
-// +----------------+
-// | CONSOLE COLORS |
-// +----------------+
+export {
+  validateBodyColor,
+  validateParamsColor,
+  validateQueryColor,
+} from "./color.middleware";
+```
+
+### `src/types/util.type.ts`
+
+```typescript
+// +------------------+
+// | CORES DO CONSOLE |
+// +------------------+
 export type ConsoleColorsProps = {
   RESET: string;
   BOLD: string;
@@ -581,12 +846,35 @@ export type ConsoleColorsProps = {
   BG_CYAN: string;
   BG_WHITE: string;
 };
+```
 
+### `src/types/color.type.ts`
+
+```typescript
 // +-------+
-// | COLOR |
+// | CORES |
 // +-------+
+export type QueryColorProps = {
+  perPage?: string;
+  page?: string;
+  name?: string;
+  hexColor?: string;
+};
+
+export type LocalsColorProps = {
+  limit: number;
+  rowsToSkip: number;
+  name: string;
+  hexColor: string;
+};
+
+export type FilterColorProps = {
+  name?: string;
+  hexColor?: string;
+};
+
 export type ColorProps = {
-  id?: string | number;
+  id?: number;
   name: string;
   hexColor: string;
   createdAt?: string;
@@ -604,7 +892,14 @@ export type AllColorsProps = {
 };
 ```
 
-### `src/utils/consoleColors.ts`
+### `src/types/index.ts`
+
+```typescript
+export type { ConsoleColorsProps } from "./util.type";
+export type { ColorProps, AllColorsProps } from "./color.type";
+```
+
+### `src/helpers/console-colors.helper.ts`
 
 ```typescript
 import { ConsoleColorsProps } from "../types";
@@ -647,6 +942,12 @@ export const consoleColors: ConsoleColorsProps = {
 };
 ```
 
+### `src/helpers/index.ts`
+
+```typescript
+export { consoleColors } from "./console-colors.helper";
+```
+
 ---
 
 ### 4. Configurar os Scripts de Execução
@@ -655,11 +956,11 @@ Para rodar o projeto de forma eficiente com o `tsx` (que executa TypeScript dire
 
 ```json
 "scripts": {
-  "dev": "tsx watch src/server.ts",
+  "dev": "tsx watch --env-file=.env src/server.ts",
+  "typecheck": "npx tsc --noEmit --watch",
   "build": "tsc",
-  "start": "node dist/server.js"
+  "start": "node --env-file=.env dist/server.js"
 }
-
 ```
 
 ### Como testar:
@@ -668,7 +969,6 @@ Para rodar o projeto de forma eficiente com o `tsx` (que executa TypeScript dire
 
 ```bash
 npm run dev
-
 ```
 
 2. Abra seu navegador ou ferramenta de API (como Insomnia/Postman) e faça um **GET** em `http://localhost:3000/api/colors`. Deve retornar uma array vazia `[]`.
@@ -676,6 +976,13 @@ npm run dev
 
 ```json
 {
+  "name": "Amarelo",
   "hexColor": "#fff333"
 }
+```
+
+#### ÚTIL
+
+```bash
+npm rebuild sqlite3 --build-from-source 
 ```

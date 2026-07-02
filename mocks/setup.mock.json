@@ -1,0 +1,12 @@
+[
+  {
+    "name": "Inside Bar",
+    "description": "Inside Bar é um padrão de continuação de tendência que ocorre quando uma barra (ou vela) está completamente contida dentro do intervalo da barra anterior. Isso indica indecisão no mercado e pode sinalizar uma possível continuação da tendência ou uma reversão. Tipo: Padrão de Continuação. Exemplo: Se o preço estiver em uma tendência de alta e formar um Inside Bar, isso pode indicar que a tendência de alta continuará após a consolidação representada pelo Inside Bar.",
+    "idColor": 1
+  },
+  {
+    "name": "Topo Duplo",
+    "description": "O padrão de Topo Duplo é um padrão de reversão de tendência que ocorre após uma tendência de alta. Ele é caracterizado por dois picos consecutivos no gráfico, com um vale entre eles. O padrão indica que a pressão de compra está diminuindo e que uma reversão para uma tendência de baixa pode ocorrer. Tipo: Padrão de Reversão. Exemplo: Se o preço formar dois picos consecutivos e não conseguir ultrapassar o nível do primeiro pico, isso pode indicar uma possível reversão para uma tendência de baixa.",
+    "idColor": 2
+  }
+]

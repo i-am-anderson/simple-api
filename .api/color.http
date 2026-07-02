@@ -1,0 +1,32 @@
+# REST Client Extension
+
+#############################
+######      CORES      ######
+#############################
+
+### Cria uma nova COR
+POST http://localhost:3600/api/v1/colors
+content-type: application/json
+
+{
+  "name": "Ameixa",
+  "hexColor": "#8E4500"
+}
+
+### Busca todas as CORES (1 <= perPage <= 20) (OPCIONAIS: perPage=5, page=3, name=Ameixa, hexColor=#8E4500)
+GET http://localhost:3600/api/v1/colors?perPage=5&page=1&name=Ameixa&hexColor=%238E4500
+
+### Busca COR pelo ID 
+GET http://localhost:3600/api/v1/colors/1
+
+### Atualiza COR pelo ID 
+PATCH http://localhost:3600/api/v1/colors/1
+content-type: application/json
+
+{
+  "name": "Vermelho Tomate",
+  "hexColor": "#ef3519"
+}
+
+### Deleta COR pelo ID
+DELETE  http://localhost:3600/api/v1/colors/1

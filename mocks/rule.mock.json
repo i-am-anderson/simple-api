@@ -1,0 +1,17 @@
+[
+  {
+    "name": "Regra 1",
+    "description": "No Inside Bar o preço atual deve estar dentro do candle anterior, e o candle anterior deve ser maior que o candle atual.",
+    "idSetup": 1
+  },
+  {
+    "name": "Regra 1",
+    "description": "No Topo Duplo o preço atual deve estar abaixo do pico do candle anterior.",
+    "idSetup": 2
+  },
+  {
+    "name": "Regra 2",
+    "description": "No Topo Duplo deve haver uma tendência prévia de alta.",
+    "idSetup": 2
+  }
+]

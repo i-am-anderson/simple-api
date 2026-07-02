@@ -1,0 +1,34 @@
+# REST Client Extension
+
+###################################
+######      ESTRATÉGIAS      ######
+###################################
+
+### Cria uma nova ESTRATÉGIA
+POST http://localhost:3600/api/v1/strategies
+content-type: application/json
+
+{
+  "name": "Ichimoku Kinko Hyo",
+  "description": "Estratégia baseada no indicador Ichimoku Kinko Hyo. O Ichimoku Kinko Hyo é um indicador técnico que fornece informações sobre suporte e resistência, direção da tendência, momentum e sinais de negociação. Ele é composto por cinco linhas principais: Tenkan-sen, Kijun-sen, Senkou Span A, Senkou Span B e Chikou Span. A estratégia envolve a análise dessas linhas para identificar oportunidades de compra e venda no mercado. A interpretação das linhas do Ichimoku Kinko Hyo pode variar dependendo da configuração do gráfico e do ativo negociado, mas geralmente, quando o preço está acima das nuvens (formadas pelas linhas Senkou Span A e B), é considerado um sinal de tendência de alta, enquanto quando o preço está abaixo das nuvens, é considerado um sinal de tendência de baixa. Além disso, os cruzamentos das linhas Tenkan-sen e Kijun-sen podem fornecer sinais adicionais de entrada e saída.",
+  "idColor": 5
+}
+
+### Busca todos as ESTRATÉGIAS (1 <= perPage <= 20) (OPCIONAIS: perPage=5, page=3, name=Ichimoku Kinko Hyo)
+GET http://localhost:3600/api/v1/strategies?perPage=5&page=1&name=Ichimoku+Kinko+Hyo
+
+### Busca ESTRATÉGIA pelo ID 
+GET http://localhost:3600/api/v1/strategies/1
+
+### Atualiza ESTRATÉGIA pelo ID 
+PATCH http://localhost:3600/api/v1/strategies/1
+content-type: application/json
+
+{
+  "name": "Ichimoku Kinko Hyo",
+  "description": "Estratégia baseada no indicador Ichimoku Kinko Hyo. O Ichimoku Kinko Hyo é um indicador técnico que fornece informações sobre suporte e resistência, direção da tendência, momentum e sinais de negociação. Ele é composto por cinco linhas principais: Tenkan-sen, Kijun-sen, Senkou Span A, Senkou Span B e Chikou Span. A estratégia envolve a análise dessas linhas para identificar oportunidades de compra e venda no mercado. A interpretação das linhas do Ichimoku Kinko Hyo pode variar dependendo da configuração do gráfico e do ativo negociado, mas geralmente, quando o preço está acima das nuvens (formadas pelas linhas Senkou Span A e B), é considerado um sinal de tendência de alta, enquanto quando o preço está abaixo das nuvens, é considerado um sinal de tendência de baixa. Além disso, os cruzamentos das linhas Tenkan-sen e Kijun-sen podem fornecer sinais adicionais de entrada e saída.",
+  "idColor": 5
+}
+
+### Deleta ESTRATÉGIA pelo ID
+DELETE  http://localhost:3600/api/v1/strategies/1

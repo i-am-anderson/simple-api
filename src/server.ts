@@ -1,10 +1,19 @@
 import express from "express";
 import cors from "cors";
-import { ColorRoute, AccountRoute, TimeframeRoute, MarketRoute, SymbolRoute } from "./routes";
-import { consoleColors } from "./utils/consoleColors";
+import { global } from "./configs";
+import { consoleColors } from "./helpers";
+import {
+  ColorRoute,
+  AccountRoute,
+  TimeframeRoute,
+  MarketRoute,
+  SymbolRoute,
+  SetupRoute,
+  StrategyRoute,
+} from "./routes";
 
 const app = express();
-const PORT = process.env.PORT || 3600;
+const PORT = global.port;
 const { BOLD_CYAN, UNDERLINE, RESET } = consoleColors;
 
 // Middlewares
@@ -24,6 +33,8 @@ app.use("/api/v1", AccountRoute);
 app.use("/api/v1", TimeframeRoute);
 app.use("/api/v1", MarketRoute);
 app.use("/api/v1", SymbolRoute);
+app.use("/api/v1", SetupRoute);
+app.use("/api/v1", StrategyRoute);
 
 // Iniciar servidor
 app.listen(PORT, () => {

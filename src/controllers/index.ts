@@ -1,5 +1,7 @@
-export { ColorController } from "./ColorController";
-export { AccountController } from "./AccountController";
-export { TimeframeController } from "./TimeframeController";
-export { MarketController } from "./MarketController";
-export { SymbolController } from "./SymbolController";
+export { ColorController } from "./color.controller";
+export { AccountController } from "./account.controller";
+export { TimeframeController } from "./timeframe.controller";
+export { MarketController } from "./market.controller";
+export { SymbolController } from "./symbol.controller";
+export { SetupController } from "./setup.controller";
+export { StrategyController } from "./strategy.controller";

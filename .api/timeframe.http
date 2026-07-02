@@ -1,0 +1,32 @@
+# REST Client Extension
+
+##################################
+######      TIMEFRAMES      ######
+##################################
+
+### Cria uma nova TIMEFRAME
+POST http://localhost:3600/api/v1/timeframes
+content-type: application/json
+
+{
+  "name": "1h",
+  "description": "TIMEFRAME de 1 hora."
+}
+
+### Busca todos os TIMEFRAMES (1 <= perPage <= 20) (OPCIONAIS: perPage=5, page=3, name=1h)
+GET http://localhost:3600/api/v1/timeframes?perPage=5&page=1&name=1h
+
+### Busca TIMEFRAME pelo ID 
+GET http://localhost:3600/api/v1/timeframes/1
+
+### Atualiza TIMEFRAME pelo ID 
+PATCH http://localhost:3600/api/v1/timeframes/1
+content-type: application/json
+
+{
+  "name": "1H",
+  "description": "TIMEFRAME de 1 hora."
+}
+
+### Deleta TIMEFRAME pelo ID
+DELETE  http://localhost:3600/api/v1/timeframes/1

@@ -1,0 +1,32 @@
+# REST Client Extension
+
+################################
+######      MERCADOS      ######
+################################
+
+### Cria um novo MERCADO
+POST http://localhost:3600/api/v1/markets
+content-type: application/json
+
+{
+  "name": "Ação",
+  "description": "MERCADO de ações à vista."
+}
+
+### Busca todos os MERCADOS (1 <= perPage <= 20) (OPCIONAIS: perPage=5, page=3, name=Futuros)
+GET http://localhost:3600/api/v1/markets?perPage=5&page=1&name=Futuros
+
+### Busca MERCADO pelo ID 
+GET http://localhost:3600/api/v1/markets/1
+
+### Atualiza MERCADO pelo ID 
+PATCH http://localhost:3600/api/v1/markets/1
+content-type: application/json
+
+{
+  "name": "Ações",
+  "description": "MERCADO de ações à vista."
+}
+
+### Deleta MERCADO pelo ID
+DELETE  http://localhost:3600/api/v1/markets/1
